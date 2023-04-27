@@ -1,0 +1,87 @@
+@charset "utf-8";
+
+
+/* 幅を決めたときに、内側の余白とボーダーを含めてwidthに入れるようにする */
+* {
+  box-sizing: border-box; /* 初期値はcontent-box。内側余白とボーダーをwidthに含める */
+}
+
+ul.gnav-list-1 {
+  background: #1b9aaa;
+
+  /* 内側余白をなくす（ことでリストマーカーが消えたように見える。リストマーカーは、要素の範囲の外に出てくるもの。つまり画面の外側に押し出された。初期値はリストマーカーがoutsideになっていて、insideが要素の中に入ってくる。insideになってないのは、要素の文章が長くて複数行になったときに、折り返された２行目以降の文章がマーカーのすぐ下にきてしまい、見た目にあまり良くない） */
+  padding: 0;
+
+  /* liの親はブロック要素ulで、ulの中の行(li)を中央寄せにする */
+  /* この設定は、liの中にも引き継がれる。liの中の文字も中央寄せになる */
+  text-align: center;
+}
+
+ul.gnav-list-1 li {
+  /* display: list-item; 初期値。これはブロック */
+  
+  /* 表示形式をインラインブロックにすれば、勝手にリストマーカーは消える。 */
+  display: inline-block;
+}
+
+/* .gnav-list-1 a とかでもいい　一意だから。ただセレクタの詳細度という点では弱くなるけど */
+ul.gnav-list-1 li a {
+  /* aはインライン要素なので、ブロックにすることで上下左右の空白を入れられるようにする blockにしないと親要素をつきぬけて余白が入っちゃう inline-blockでもいい */
+  display: block;
+  /* aに内側余白をつけるとリンク範囲が広がる。liに余白付けてもリンク範囲広がらない */
+  padding: 1em;
+  color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+ul.gnav-list-1 li a::first-line {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+ul.gnav-list-1 li a:hover {
+  background: #14727e;
+}
+
+ul.gnav-list-2 {
+  background: #f0dcd4;
+  /* リストの上下左右のパディングを消す */
+  padding: 0;
+  /* ul配下のliが中央に来る。liの中にも継承される */
+  text-align: center;
+}
+
+ul.gnav-list-2 li {
+  /* 余白や大きさ指定がきく、さらに横並びにする */
+  display: inline-block;
+}
+
+ul.gnav-list-2 li a {
+  /* liの中のaをブロックにして余白や大きさ指定をきかせる */
+  display: block;
+  padding: 20px 20px 10px;
+  /* aにユーザーエージェントスタイルで青色が設定されているからそれを直す。文字の色は継承が弱いからaに対してやること */
+  color: #7b645d;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+/* 疑似クラス */
+ul.gnav-list-2 li a:hover {
+  /* 4pxぶん余白を消す */
+  padding-bottom: 4px;
+  /* 6pxのボーダーをつける */
+  border-bottom: 6px solid #7b645d;
+}
+
+ul.gnav-list-2 li a img {
+  /* 改行をいれないかわりにブロックにして改行を入れる */
+  display: block;
+  /* 下に外余白 */
+  margin: 0 auto 1em;
+
+  /* 画像の高さを指定する */
+  height: 24px;
+}
+

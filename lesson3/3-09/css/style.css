@@ -1,0 +1,64 @@
+@charset "utf-8";
+
+ul {
+  border: 10px solid #aae5e7;
+  /* 上、左右、下 */
+  padding: 1em 1em 0;
+  list-style: none;
+}
+
+/* ulの中のliを指定。liは子どもかもしれないし、孫かもしれないけど */
+ul li {
+  border-bottom: 4px dotted #6baeb3;
+  margin-bottom: 1em;
+}
+
+/* 疑似要素はインライン（幅はコンテンツのある幅のみ） */
+ul li::before {
+  /* contentに絵文字入れてもいい */
+  /* content: "🍇 "; */
+  /* ./は同じ階層、../は一階層うえ（3-09フォルダ）。2階層上にするなら../../と続ける */
+  content: url(../img/check.png);
+
+  /* インラインの場合、余白左右はきくけど上下には指定できない */
+  margin-right: 4px;
+
+  /* vertical縦の　align揃え 親に対する子の位置ではなく、行の中の文字の位置 */
+  /* 日本語はだいたいベースラインの上に文字があるが、欧文はjとかqとか下につっきる。
+  行ボックスにはbottomがある。もちろんtopもある。文字は基本ベースラインにあるが、この割付をどこにするか？→middleはトップもbottomも含めた中央（小文字xのちょうど中央にあたる） */
+  vertical-align: middle;
+}
+
+ol {
+  border: 10px solid #ffc43d;
+  padding: 20px 40px;
+}
+
+/* 要素の範囲の左下に背景画像を置く */
+ol li {
+  /* 画像用のアキ */
+  padding-bottom: 20px;
+
+  /* コンテンツの外側にも余白をとってリスト同士の間を広げる */
+  margin-bottom: 20px;
+
+  /* デフォルト値は透明 */
+  /* background: transparent; */
+
+  /* リピートさせず、左下に置く　位置は5%や10pxとかでも */
+  background: url(../img/arrow.png) no-repeat left bottom;
+}
+
+/* :last-of-type　←　これは「疑似クラス」。とある状態になったとき、という意味（hoverとかactiveとか） */
+/* type=最後の要素　親要素olの範囲で最後にくる要素 */
+ol li:last-of-type {
+  /* 下段の内側余白はいらない */
+  padding-bottom: 0;
+
+  /* 下段の外側余白もいらない */
+  margin-bottom: 0;
+
+  /* 以下はbackground-image: noneということ。以下のようにすると他のプロパティは初期値initialになる（たとえばrepeatはリピートするのに戻ってる） */
+  background: none;
+
+}

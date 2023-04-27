@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+/* デスクトップ用のスタイル これを先に決めるのはデスクトップファーストという */
+h1 {
+  background-color: yellow;
+}
+
+/* あとに書かないと適用されない */
+/* スマホ用スタイル @media指示ひ */
+/* screenは見ている環境。tvとかprintとか。。。つまりモニタ限定のスタイルということ */
+/* かつ、マックス幅0～480pxまでの場合青くする。481pxになったら黄色くする */
+/* andは数珠繋ぎにもできる */
+/* スクリーンをかかなければ、どの媒体でも、ということになる @media (max-width:480px) */
+@media screen and (max-width:480px){
+ h1 {
+  background-color: cadetblue;
+  font-size: 80%;
+ } 
+}
+
+/* モバイル用 */
+
+p{
+  font-size: 12px;
+  background-color: gold;
+  padding: 20px;
+}
+
+/* デスクトップ用 */
+
+@media screen and (min-width: 750px) {
+  p{
+    font-size: 20px;
+    background-color: green;
+    padding: 40px;
+  }
+}
+
+/* 下限と上限を入れる */
+@media screen and (min-width:481px) and (max-width:959px) {
+  
+}
+
+@media screen and (max-width:480px){
+
+}

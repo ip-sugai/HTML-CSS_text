@@ -1,0 +1,63 @@
+@charset "utf-8";
+
+section {
+  width: 600px;
+  background: #ffebf0;
+  margin: 0 auto;
+  /* margin-left: auto;
+  margin-right: auto; */
+
+  /* 2文字分の内側余白 */
+  padding: 2em;
+}
+
+/* 上、左右、下 */
+h1 {
+  /* 下余白を1文字分だけ、あとは勝手についている余白を削除する */
+  margin: 0 0 1em;
+}
+
+img {
+  width: 320px;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  float: right;
+
+  /* 70%の不透明にする。0は完全に透明。0～1の範囲で設定する　アルファ値 */
+  opacity: 0.7;
+}
+
+/* 行の高さが行の文字の1.8倍　16*1.8=28.8 */
+/* 上下は12.8ピクセル＝6.4ずつとられている。次の行の文字とは、12.8ピクセル空いている */
+p {
+  line-height: 1.8;
+  background-color: yellow;
+}
+
+/* ①sectionの一番下にひとつdivを追加し、それに対して回り込み解除をする方法 */
+div {
+  /* 前の要素がfloat:rightをもっていたら、それを解除する */
+  /* clear: right; */
+  /* 右だろうが左だろうが解除するのがboth */
+  /* clear: both; */
+}
+
+/* ②疑似要素をsectionの最後につけて、clearで回り込みを解除する方法 */
+section::after {
+  /* content: "";
+  background-color: green; */
+  /* clearはブロック要素にしかきかないから、ブロックにする */
+  /* display: block; */
+  /* floatを解除する */
+  /* clear: both; */
+}
+
+/* もっと汎用性を高くするならクラスを作る */
+.clearfix::after {
+  content: "";
+  background-color: green;
+  /* clearはブロック要素にしかきかないから、ブロックにする */
+  display: block;
+  /* floatを解除する */
+  clear: both;
+}

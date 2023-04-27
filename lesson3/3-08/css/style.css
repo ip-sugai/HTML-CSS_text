@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+a{
+  display: block;
+  width: 200px;
+  margin: 40px auto; /* 上下40、左右中央寄せ */
+  padding: 1em; /* 16px */
+  text-align: center; /* インライン要素は、位置の指定ができない。ブロックなら効く */
+  background-color: yellow;
+  color: pink!important;
+}
+
+/* デスクトップ用　960以上の設定 最小でも960になったら */
+/* マウスオーバーしたらちょっと薄くする　マウスオーバーはタブレットやスマホではいらない概念 */
+/* :hoverは疑似クラス　条件付けをする */
+@media screen and (min-width:960px){
+  a:hover {
+    opacity: 0.7;
+  }
+}
+
+/* text-decoration line style colorのあつまったやつ */
+/* line-through */
+a.text-link {
+  color: #000;
+  text-decoration: underline; /* 初期値でunderlineになる */
+}
+
+a.button-link {
+  background: #ffd700;
+  text-decoration: none; /* 初期値underlineをなくす。スタイルなし */
+  color: #ff4500;
+  font-size: 20px;
+}
+
+a.button-link2 {
+  background: #1e90ff;
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 10px;
+  border-bottom: 4px solid #191970;
+}
+
+/* クリックしている時のスタイル */
+a.button-link2:active {
+  border-bottom: none; /* 押し込むと下の枠線が消える */
+  transform: translateY(4px); /* ボタンの影ぶん、おした感じが出る */
+}

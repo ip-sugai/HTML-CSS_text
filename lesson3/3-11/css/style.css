@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+table {
+  /* デフォルトではborder-spacing: 2pxになってる（tableのborderとセルのborderに空白がある） */
+  border-spacing: 0;
+  /* デフォルトではborder-collapse: border-spacing;になってる */
+  border-collapse: collapse;
+
+  /* width: 100%;にすると親（body）に合わせてテーブルが伸びるが、列幅はコンテンツの影響を受けて決められている */
+  width: 100% ;
+}
+
+/* カンマならまとめて指定 */
+table,th,td {
+  border: 1px solid #ccc;
+
+  /* コンテンツの周りに内側余白を入れる */
+  padding: 0.5em;
+
+}
+
+/* tableの子孫セレクタ */
+table caption {
+  font-size: 0.8em;
+
+  /* キャプションを表の下に入れる */
+  caption-side: bottom;
+}
+
+.col-1 {
+  width: 20%;
+}
+
+.col-2 {
+  width: 40%;
+}
+
+.col-3 {
+  width: 40%;
+}
+
+th {
+  background: #a50;  
+  color: #fff;
+}

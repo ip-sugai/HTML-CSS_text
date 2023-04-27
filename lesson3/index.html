@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- 文字情報   -->
+  <meta charset="utf-8"> 
+
+  <!-- 設定項目がname、今回はviewport。viewportにこういう設定をしますがcontent。幅はブラウザに勝手に解釈させず、デバイスと同じものと設定する -->
+  <meta name = "viewport" content="width=device-width,initial-scale=1">
+
+  <!-- 今回はdescription、検索結果の説明書き -->
+  <meta name ="description" content="ページの内容を説明する文章">
+
+  <!-- 必須属性rel=styleseet（外部CSSファイル）という意味 -->
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- linkタグまではheadにかかないといけない -->
+
+  <!-- <script src="JavaScriptファイルまでのパス、scriptの中に記述したらいらない">
+    JSコードを記述できる。headじゃなくてもどこに入れても動く
+  </script> -->
+
+  <title>ページのタイトル</title>
+
+  <!-- 内部参照 -->
+  <style>
+    /* pがセレクタ、bgcがプロパティ、yellowが値。ぜんぶまとめてルールセットという */
+    /* p {
+      background-color:  yellow;
+      font-weight: bold;
+    } */
+  </style>
+
+</head>
+<body>
+  <h1 style="color:red;">あいうえお</h1>
+  <p style="background-color: green;">bodyタグの中身がブラウザ上に表示されます</p>
+
+  <p>ここは別の段落要素です</p>
+
+  <header>
+    <!-- ロゴとかナビゲーションとか -->
+  </header>
+
+  <main>
+    <!-- メインコンテンツ。各ページに1つだけ -->
+  </main>
+
+  <aside>
+    <!-- 補足コンテンツ。あってもなくても　脚注、広告バナーとか -->
+  </aside>
+
+
+
+</body>
+</html>

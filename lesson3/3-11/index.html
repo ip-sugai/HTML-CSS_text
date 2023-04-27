@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ボーダーに関してはcssでやるべきなので属性border ="1" は推奨されていない。HTML5には後方互換性があり、前のHTMLでの書き方をフォローしてしまっている。 -->
+  <table>
+    <!-- captionはテーブルタブの直下にいれること -->
+    <caption>手ぶらでBBQ料金比較</caption>
+    <!-- tr*4>th+td*2 -->
+    <tr>
+      <!-- thは下のデータにつづくものの見出しにみえる。＝scope="col"が入ってる -->
+      <th class="col-1">&nbsp;</th>
+      <th scope="col" class="col-2">コスパパック</th>
+      <th scope="col" class="col-3">ボリュームパック</th>
+    </tr>
+    <tr>
+      <!-- thは横のデータに続くものの見出しniにみえる。scope="row"が入ってる -->
+      <th scope="row">金額</th>
+      <td>3,000円/人</td>
+      <td>5,000円/人</td>
+    </tr>
+    <tr>
+      <th>食材</th>
+      <td>なし（持ち込み）</td>
+      <td>肉200g+野菜</td>
+    </tr>
+    <tr>
+      <th>機材</th>
+      <td>コンロ一式</td>
+      <td>コンロ一式+テントセット</td>
+    </tr>
+  </table>
+</body>
+</html>
