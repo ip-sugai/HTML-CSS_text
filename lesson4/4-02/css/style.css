@@ -1,5 +1,91 @@
 @charset "utf-8";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  /* 画像は親要素に対して伸び縮みするが、画像のサイズを決めてないとき、画像の幅に対する100%以上にはならない　width:100%は親要素に対しての100%、親が500pxだったら画像も伸びるということ */
+  max-width: 100%;
+  /* imgはインライン要素で、通常ならベースラインに乗るので、テキストボトムのぶん隙間ができる。これをブロックにするor vartical-alignをbottomにすることで消す */
+  display: block;
+}
+
+.container {
+  /* body（親）と同じ大きさにする */
+  width: 100%;
+  /* 1000pxでうちどめ */
+  max-width: 1000px;
+}
+
 
 .container {
   display: grid;
+  /* ３列、２行 */
+  /* grid-template-columns: 320px 320px 320px; */
+  /* grid-template-rows: 240px 240px; */
+
+  /* frは割合。2fr 1frにすると2:1の割合  */
+  /* []で線に名前を付けられる。絵文字でもＯＫ。ディベロッパーツールのレイアウトで「行番号を表示」にすると名前が見える */
+  grid-template-columns: [🚲 バイク]1fr [🍇 ぶどう]1fr [🗾 にほん]1fr [🍓 いちご];
+  /* 設定したがそんなに関係ない　高さについては、子のコンテンツの量によって可変だから。もし親に高さが設定されているなら関係してくる  */
+  grid-template-rows: [🍊 みかん]1fr [🐶 いぬ]1fr [🍆 なす];
+  grid-gap: 20px;
+
+  /* エリアに名前を付ける */
+  grid-template-areas:
+    "🍌 お 🦊"
+    "🍑 🍑 🍑"
+  ;
 }
+
+.item:nth-child(3){
+  border: 5px solid #000;
+
+  /* 位置を入れ替える */
+  /* grid-column-start: 2;
+  grid-column-end: 3; */
+
+  grid-column: 2 / 3;
+  grid-column: 🍇 / 🗾;
+
+  /* grid-row-start: 1;
+  grid-row-end: 2; */
+
+  grid-row: 1 / 2;
+}
+
+/* エリアそれぞれに付けた絵文字を使ってエリアを指定する */
+.item:last-child {
+  grid-area: 🍑;
+  background-color: bisque;
+}
+
+
+/* @media screen and (max-width:999px){
+  .container {
+    画面幅が1000pxを下回ったとき、箱の幅は320px、中身は２列３行
+    width: 320px;
+    grid-template-columns: 155px 155px;
+    grid-template-rows: 116px 116px 116px;
+  }
+} */
+
+@media screen and (max-width:650px){
+  .container {
+    /* コンテナの大きさは親の100%である。この状態で子どもの幅が小さいなら、justify-content:flex-endなどで配置を寄せることができる */
+    /* grid-template-columns: 1fr 1fr;
+    grid-template-rows: 116px 116px 116px;
+    grid-gap: 10px; */
+
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(3,1fr);
+    grid-gap: 10px;
+
+  }
+} 
