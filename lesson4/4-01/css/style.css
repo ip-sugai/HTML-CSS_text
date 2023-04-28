@@ -1,0 +1,64 @@
+@charset "utf-8";
+
+* {
+  box-sizing: border-box;
+  /* とりあえずすべての余白をいったんリセットする */
+  margin: 0;
+  padding: 0;
+}
+
+section {
+  width: 90%;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  margin: 40px auto 0;
+  border: 1px dashed #ccc;
+  /* 子孫すべてのブロックの中身が中央寄せ */
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 1em;
+}
+
+/* 親 */
+.flex-container {
+  display: flex;
+  /* 主軸と交差軸の設定(親要素にする指定) */
+  /* 主軸のレイアウトはjustify-content デフォルトはstart */
+  justify-content: space-around;
+  /* 交差軸（基本的には縦方向）のレイアウトはalign-items */
+
+  /* 主軸の方向を変えるのがflex-direction rowがデフォルトで横方向、columnにすると主軸が縦（交差軸が横）になる */
+}
+
+/* 子ども */
+.flex-item {
+  background: #09b;
+  color: #fff;
+  padding: 1em;
+  flex-basis: 30%;
+}
+
+.flex-item dt {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+@media screen and (max-width:480px){
+  h2 {
+    font-size: 1.1em;
+  }
+
+
+  .flex-container {
+    flex-direction: column;
+    /* flex-basis 30%は高さがないから効かない */
+  }
+
+  .flex-item {
+    margin: 0 1em 1em;
+  }
+
+}
