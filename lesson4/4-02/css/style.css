@@ -31,37 +31,46 @@ img {
   /* grid-template-rows: 240px 240px; */
 
   /* frは割合。2fr 1frにすると2:1の割合  */
-  /* []で線に名前を付けられる。絵文字でもＯＫ。ディベロッパーツールのレイアウトで「行番号を表示」にすると名前が見える */
-  grid-template-columns: [🚲 バイク]1fr [🍇 ぶどう]1fr [🗾 にほん]1fr [🍓 いちご];
+  /* []が線を表し、名前を付けられる。絵文字でもＯＫ。ディベロッパーツールのレイアウトで「行番号を表示」にすると名前が見える */
+  grid-template-columns: [🚲 バイク]  1fr [🍇 ぶどう] 1fr [🗾 にほん] 1fr [🍓 いちご];
   /* 設定したがそんなに関係ない　高さについては、子のコンテンツの量によって可変だから。もし親に高さが設定されているなら関係してくる  */
-  grid-template-rows: [🍊 みかん]1fr [🐶 いぬ]1fr [🍆 なす];
+  grid-template-rows: [🍊 みかん] 1fr [🐶 いぬ] 1fr [🍆 なす];
   grid-gap: 20px;
 
-  /* エリアに名前を付ける */
+  /* 1マス1マスを一度に作り、さらに名前を付ける（grid-template-colums,rowsと一緒） */
   grid-template-areas:
     "🍌 お 🦊"
     "🍑 🍑 🍑"
   ;
 }
 
+/* 3番目の要素だけを動かす */
 .item:nth-child(3){
   border: 5px solid #000;
 
   /* 位置を入れ替える */
-  /* grid-column-start: 2;
+  /* 縦の線のうち、2本目から3本目のところ（2カラム目）に持ってくる
+  grid-column-start: 2;
   grid-column-end: 3; */
-
+  /* 省略した書き方 */
   grid-column: 2 / 3;
   grid-column: 🍇 / 🗾;
 
-  /* grid-row-start: 1;
-  grid-row-end: 2; */
+  /* grid-column: 2 / 4;とやると、3コンテンツ幅が横に伸びる */
 
+  /* 横の線のうち、1本目から2本目のところ（2カラム目）に持ってくる
+  grid-row-start: 1;
+  grid-row-end: 2; */
+  /* 省略した書き方 */
   grid-row: 1 / 2;
+
+  /* もともと2カラム目にあった「2」の画像は隣にずれる */
 }
 
-/* エリアそれぞれに付けた絵文字を使ってエリアを指定する */
+/* エリアそれぞれに付けた絵文字を使って、子要素のエリアを指定する */
+/* 6つ目の要素を🍑エリアに配置する、さらに色を付ける */
 .item:last-child {
+  /* 🍑エリアに6つ目の要素を配置してください */
   grid-area: 🍑;
   background-color: bisque;
 }

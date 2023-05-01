@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-001">
+    <p>.bg-001<br>背景画像を敷き詰める</p>
+  </div>
+
+  <div class="bg-002">
+    <p>.bg-002<br>背景画像を敷き詰める</p>
+  </div>
+
+  <!-- .px+.per+.cover+.contain -->
+  <div class="px">幅150px 高さ50px</div>
+  <div class="per">幅50% 高さ50%</div>
+  <div class="cover">領域全体をカバーする（画像の比率はキープ）※上下左右切れるところがあるかも</div>
+  <div class="contain">画像を最大限大きくする（画像比率はキープ）※見切れることはないが余白ができるかも</div>
+
+  <section class="bg-003"></section>
+  <section class="bg-004"></section>
+
+  <p class="object-fit">
+    <img src="img/bg-cat.png" alt="">
+  </p>
+  
+</body>
+</html>

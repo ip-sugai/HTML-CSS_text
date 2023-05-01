@@ -1,0 +1,105 @@
+@charset "utf-8";
+
+.bg-001 {
+  /* left center repeatは初期値 */
+  background: url(../img/bg-stripe.png) left center repeat;
+}
+
+.bg-002 { 
+  /* 下の中央から画像を置く、リピートしない */
+  background: #98807b url(../img/bg-cat.png) center bottom no-repeat;
+  height: 300px;
+}
+
+
+/* bg001とbg002を除外したdiv */
+/* div:not(.bg-001):not(.bg-002) {
+  border: 1px solid #000;
+} */
+
+div:not(.bg-001, .bg-002) {
+  background: url(../img/bg-cat-light.png) no-repeat right bottom;
+  width: 150px;
+  height: 150px;
+  border: 1px solid #ccc;
+}
+
+/* !importantおいて、div:notの詳細度に勝つ */
+/* 画像の大きさを直接指定しているのでゆがむ */
+.px {
+  background-size: 150px 50px!important; /* 幅　高さ */
+}
+
+/* 親の半分の大きさ（75px）にする。ゆがむ */
+.per {
+  background-size: 50% 50%!important;
+}
+
+/* 画像の幅を150px*150pxの親要素にフィットさせる。領域いっぱいをおおうが、その分高さがはみ出す */
+/* 基準点が右下だから猫の足のほうが表示されるが、顔を表示させたかったら backgroundの開始位置を↑でcenter top などの指定をするとよい */
+/* 例えばWebサイトのメインビジュアルを入れるとき、ユーザー側の画面幅がわからないので、coverにしておけば、メインビジュアルのエリアは埋め尽くしてくれるので便利 */
+/* object-fit:coverも似たような挙動をする */
+/* background-positionで基準点を設定できる */
+
+.cover {
+  background-size: cover!important;
+}
+
+/* 画像比率をキープしたまま、画像内で画像全体が見えるように縮小して入れる。画像を見切れないようにするので、どこかに余白ができてくる */
+.contain {
+  background-size: contain!important;
+}
+
+.bg-003 {
+  background: 
+    url(../img/bg-cat.png) no-repeat left bottom,
+    url(../img/bg-stripe.png) center center repeat
+  ;
+  width: 300px;
+  height: 300px;
+}
+
+/* グラデーションはback-ground-imageで設定すること */
+.bg-004 {
+  background: 
+    url(../img/bg-frame.png) center center,
+    /* リニアグラディエント　関数　線形のグラデーション　領域に対してグラデーションをかける */
+    /* deg=角度　グラデーションの方向（終わり）を指定,最初の色の指定,　2色目を指定 */
+    /* 色は3色以上でも指定可能　1色目50%、2色目50%　の位置に置かれる　#ff6464 80% とかにすればその色が入る位置をかえられる */
+    /* 円形グラデーションはradial-gradient */
+    /* rgbaで不透明度を設定することも */
+    /* 終わり位置については、キーワードで right bottom　とか入れると、箱の中でうまいこと右下へグラデをしいてくれる */
+    linear-gradient(-135deg, #ffd5c9, #ff6464 50%)
+  ;
+  width: 300px;
+  height: 300px;
+}
+
+.object-fit {
+  /* 親要素(body)の50% */
+  width: 50%;
+  /* 500pxより大きくならない（小さくなるのはいくらでも） */
+  max-width: 500px;
+  border: 1px solid #000;
+  height: 500px;
+}
+
+/* background-size: containと同様の挙動 */
+.object-fit img {
+  
+  /* 親要素（p）の幅・高さに合わせる */
+  width: 100%;
+  height: 100%;
+
+  /* これがないと、常に親要素と同じ幅・高さに画像が可変するので、画像の比率をキープしつつ親要素全体をカバーする（見切れる部分を出す） */
+  /* object-fit: containにすると、画面を小さくすることで画像も小さくなる（全体を表示する、上下左右に余白ができる） */
+  object-fit: cover;
+
+  /* 見切れる際の基準点　background-positionと同じ使い方 */
+  object-position: 50% top;
+}
+
+/* 
+動画は背景画像として指定できないため、HTMLに埋め込む必要がある
+親要素目いっぱいにこの画像を表示するという場合、object-fit:coverにすれば動画を画面いっぱいに表示できる 
+*/
