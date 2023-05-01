@@ -1,0 +1,126 @@
+@charset "utf-8";
+
+section {
+  background-color: orange;
+  width: 200px;
+}
+
+section img {
+  /* imgをsectionと同じ幅にするので、sectionの中に横幅はおさまる */
+  width: 100%;
+}
+
+/* positionはimgに対してかける。ちなみにデフォルトはstatic */
+/* 相対値で動かす場合。もともと画像のあったの領域は確保されたまま（親が認識していたまま）ズレる */
+.relative img {
+  position: relative;
+  
+  /* relativeだけだと見た目は変わらず、位置をずらしてはじめて効果がわかる */
+  top: 60px;
+  left: 100px;
+
+}
+
+/* ③sectionにstatic以外を持たせないと、画像の基準位置ができない。だからsectionにrelativeをかける */
+/* .absoluteセクションを基準にしたので、画像の大きさもsectionが基準になる */
+.absolute {
+  position: relative;
+}
+
+
+/* ①absoluteは親階層から外れるので、親が小さくなるし、画像ももとの大きさに戻っちゃう */
+/* absoluteは先祖の要素をたどり、static以外を持っている要素を探す。今回は無い（section=staticなのでそのうえのbodyを基準にする）ので、bodyと同じ幅になるということ */
+.absolute img {
+  position: absolute;
+
+  /* 位置を指定。ほかの要素の上に来る */
+  top: 0;
+  left: 50px;
+
+  /* ②sectionにstatic以外を持たせないと、画像の基準位置ができない。だからsectionにrelativeをかける */
+}
+
+/* 雑誌風レイアウト */
+
+* {
+  /* m0+p0+bx */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  /* ブロックレベルにして、インラインのベースラインに乗るみたいな設定を消す */
+  display: block;
+  /* 画像が本来持っている大きさを最大とする（widthを指定していたらそれに沿う） */
+  max-width: 100%;
+}
+
+body {
+  background: #e2d0bc;
+}
+
+.magazine {
+  margin: 200px auto 0;
+  width: 1000px;
+  max-width: 100%;
+  height: 600px;
+
+  /* 中の要素をズラすための基準を.magazine のセクションにする */
+  position: relative;
+}
+
+.text-box {
+  /* macだとアルファベットで游明朝が登録されている。漢字だとWinは呼び出せる。YuMinchoという書き方はキャメルケースという（頭文字だけ大文字にすると、ラクダのコブみたいにぽこぽこしているように見えるから） */
+  /* serif=セリフ体は英語の指定、日本語で言う明朝体、サンセリフはゴシック体。ブラウザが勝手に明朝体を選ぶ */
+  font-family: "游明朝", YuMincho serif;
+  width: 600px;
+  padding: 20px;
+  background: #fff;
+  /* x方向、y方向、ぼかし度合、広がり（太さ）、色 */
+  box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.2);
+  /* magazineを基準にしてabsolute。テキストが浮くので、画像の要素が上に詰まってくる */
+  position: absolute;
+  top: 320px;
+  left: 0;
+}
+
+.img-box {
+  /* 1000px以下なら、画像はずっとmagazineに対して70%になる */
+  width: 70%;
+  /* margin-left autoでも */
+  margin-left: 30%;
+}
+
+h2 {
+  font-size: 1.8em;
+  margin-bottom: 0.5em;
+}
+
+@media screen and (max-width:480px){
+  
+  .magazine {
+    /* max-width: 1000pxを書き換えている; */
+    width: 100%;
+    /* .magazineにすでに書かれているからなくてもいい */
+    height: 600px;
+  }
+
+  .text-box {
+    /* 幅600pxを辞めて、親（magazine）の90%にする */
+    width: 90%;
+
+    top: 60vw; /* 画面幅に対する相対値。上からの距離を常に画面幅の6割にする */
+    left: 0; /* 無くてOK */
+  }
+
+  h2 {
+    font-size: 1.3em;
+    margin-bottom: 0.5em;
+  }
+
+  .img-box {
+    width: 100%;
+    margin-left: 0;
+  }
+}
