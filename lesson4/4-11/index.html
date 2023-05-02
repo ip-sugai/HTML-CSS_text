@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <h1>お問い合わせフォーム</h1>
+
+  <!-- actionは相対パス。以下はindex.htmlとprogram.phpがサーバ上で同じ階層にあると想定しての書き方。 -->
+  <!-- methodをgetにしちゃうとURLに内容が乗ってしまうのでそれを隠すpost -->
+  <!-- value属性を書くとそれが送られるから入れない -->
+
+  <form action="program.php" method="post">
+    <dl>
+      <!-- .form-item*5>dt+dd -->
+      <div class="form-item">
+        <dt>お名前</dt>
+        <dd>
+          <!-- 汎用的な入力欄　text nameはデータを入れる箱の名前。これを目印にデータを送ったりするので重要。 -->
+          <!-- value属性を書くとそれが送られるから入れない -->
+          <!-- novalidateにすると、ブラウザのバリデートをオフにする（JSで全部制御するときとか） -->
+          <input type="text" name="userName" novalidate>
+        </dd>
+      </div>
+      <div class="form-item">
+        <dt>メールアドレス</dt>
+        <dd>
+          <!-- ブラウザでバリデーション（検証）が行われ、メールアドレスに合致しない場合は注意が出てくる。ただし完全ではないのでチェックする必要はある。例えば検証ツールでemailをtextに書き換えれば送信できてしまう、みたいな穴があるJSでのチェックになる -->
+          <!-- plaseholder属性で入れれば例の文字として見えるだけの文字列になる（入力を始めれば消える）色の薄さはCSSで -->
+          <!-- 必須科目にするならリクワイヤード -->
+          <input type="email" name="userName" plaseholder="example@aaa.com" required>
+        </dd>
+      </div>
+      <!-- なおメールアドレスとddまでを全部labelで囲み、forとidで連動させれば、「メールアドレス」をクリックした際メールアドレスの入力欄が選択できるようになる -->
+
+      <div class="form-item">
+        <dt>職業</dt>
+        <dd>
+          <!-- input[type=radio]*3 -->
+          <!-- nameは統一する。おなじグループとみなされ、１つだけチェックはいるようになった -->
+          <!-- inputはインライン。横に来ている文字はただ人間が見るための表記で、実際送信されるのはvalueの値 -->
+          <!-- 特に入力必須項目の場合、何かしら最初に入力されていた方がいいので、学生にchecked属性を入れる -->
+          <!-- checkedはブーリアン属性といい、属性名だけ入れるとすぐ動く（値がない）trueオン falseオフ 真偽が値として贈られる -->
+
+          <!-- さらに、「学生」という表記をおしてもラジオボタンが押せるように、ラベルタグで囲む forは消しておく -->
+          <label class="label-radio"><input type="radio" name="job" value="学生" checked>学生</label>
+
+          <!-- forを入れた例。forは「誰のラベルか」を明示するもので、idの値を入れる。これでもクリック範囲が広がる -->
+          <input type="radio" name="job" value="会社員" id="worker"><label for="worker" class="label-radio">会社員</label>
+
+          <label class="label-radio"><input type="radio" name="job" value="その他">その他</label>
+        </dd>
+      </div>
+
+      <div class="form-item">
+        <!-- ドロップダウンリスト -->
+        <dt>お問い合わせ種別</dt>
+        <dd>
+          <select name="messageType">
+            <!-- valueは1,2とか数字が入っていることが多い　プログラムのほうで1=商品について　と紐づければいい。データベースには数字を保管しておいた方が、データ軽くなるし扱いやすくなる -->
+            <!-- selected属性（ブーリアン属性）で最初から選択されているものを決められる -->
+
+            <!-- <optgroup>を入れるとくくりができ、ドロップダウンの中でカテゴリわけができる　 -->
+            <option value="商品について">商品について</option>
+            <option value="採用について">採用について</option>
+            <option value="その他のお問い合わせ" selected>その他のお問い合わせ</option>
+          </select>
+        </dd>
+      </div>
+
+      <div class="form-item">
+        <dt>お問い合わせ内容</dt>
+        <dd>
+          <!-- 長文テキストエリア　inputと違い閉じタグがある -->
+          <!-- cols 列　rows 行　文字30個分の、10行分ということ　実際右端はスクロールバーぶん空いているので、スクロールバーがない限りはもう2文字くらい入る -->
+          <!-- 見た目っぽい属性だが、きれいな「行」の欄を作るはCSSで難しいので、これだけは属性で設定してもいい（cssで高さなど設定すればrowsの設定は上書きされる） -->
+          <!-- textarea の閉じタグの前に改行をいれると、テキストエリア内に改行が反映されちゃうので何も入れないこと -->
+          <textarea name="message" cols="30" rows="10"></textarea>
+        </dd>
+      </div>
+    </dl>
+
+    <div class="form-submit">
+      <!-- データを送るtypeはsubmit valueは「送信する」という値。ボタンには入力フォームのように入力するものがないので、サーバーに送信する値を指定する。さらにvalueは入力フォームのように、表面に出てくる -->
+      <input type="submit" value="送信する">
+    </div>
+
+
+  </form>
+</body>
+</html>

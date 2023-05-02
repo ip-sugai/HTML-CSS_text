@@ -1,0 +1,188 @@
+@charset "utf-8";
+
+:root {
+  /* --変数名: 値;　でつける */
+  --main-color: #1b9aaa;
+  /* 使い方例→　color: var(--main-color); */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #eee;
+}
+
+h1 {
+  font-size: 1.5em;
+  /* color: #1b9aaa; */
+  color: var(--main-color);
+  text-align: center;
+  margin: 40px 0 20px;
+}
+
+form {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  background: #fff;
+  padding: 40px 0;
+}
+
+dl {
+  margin: 0 auto;
+  width: 500px;
+}
+
+.form-item {
+  /* dl ddを横並びにする */
+  display: flex;
+
+  /* 主軸上のアイテムの配置 */
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+dt {
+  width: 200px;
+}
+
+dd {
+  width: 300px;
+}
+
+/* inputタグで、かつtype属性がtextのもの。属性を指定するには各括弧 */
+/* カンマ忘れずに。ただし最後のセレクタにカンマ入れるとエラー */
+/* input[type="email"]にしなくても[type="email"]でもOK */
+/* 入力系全部ということ */
+/* インプット系の初期値はインラインブロック。ブロックにしているが特に意味はない。入力欄の下に補助テキストを入れるなら、勝手に改行されるのでブロックにしてもいいかも */
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  display: block;
+  /* ブロックだからそもそも折り返すが一応 */
+  width: 100%;
+
+  /* 入力欄はもともと13.333...なのでちょっと大きくする */
+  font-size: 16px;
+}
+
+.form-submit {
+  /* 送信ボタン（インライン要素）を画面中央に持ってくるため */
+  text-align: center;
+}
+
+/* モバイル用（768以下） */
+/* 最近記号が使えるようになった(width <= 768px)こんな感じ　ただ最近なのでもう少ししたらいいかも
+(100px <= width <= 768px)ってすると100以上768以下という指定。ただしAndroidではきかなさそう。
+(max-width:100px) and (max-width:768px)よりラク */
+@media screen and (max-width:768px){
+  form {
+    padding: 20px 0;
+  }
+
+  dl {
+    /* 500pxをやめ、90%に */
+    width: 90%;
+  }
+
+  .form-item {
+    /* display: flexをやめて縦に。横並びをやめる　もしくは主軸の方法を縦にするのもいい */
+    display: block;
+  }
+
+  dt {
+    width: 100%;
+  }
+
+  dd {
+    width: 100%;
+  }
+
+}
+
+  /* 入力欄の文字の色は個別に指定されているから、個別で上書きしないといけない formだけでは入力欄の文字の色は上書きできない */
+dt,
+dd,
+select,
+input,
+textarea{
+  color: #666;
+}
+
+dt::before {
+  content: "◆";
+  color: var(--main-color);
+  padding-right: 6px;
+}
+
+input[tipe="text"],
+input[tipe="email"],
+select,
+textarea {
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 0.3em;
+}
+
+select {
+  /* 32px */
+  height: 2em;
+}
+
+.label-radio {
+  margin-right: 2em;
+}
+
+input[type="radio"] {
+  /* ラジオボタンの丸を文字の大きさまで大きくする */
+  width: 16px;
+  height: 16px;
+  /* 文字とラジオボタンの隙間を開ける */
+  margin-right: 4px;
+}
+
+textarea {
+  /* テキストエリアの高さは右下のハンドルから調整できるが、100pxより小さくならないようにした。デフォルトの大きさはhtmlで設定したrow 10 */
+  min-height: 100px;
+}
+
+input[type="submit"] {
+  background: var(--main-color);
+  width: 200px;
+  padding: 0.5em;
+  color: #fff;
+
+  /* ボーダースタイルをnoneにして、他は初期値に戻す */
+  border: none;
+  border-radius: 4px;
+}
+
+/* 769以上（pc） */
+@media screen and (min-width:769px){
+  input[type="submit"]:hover{
+    background: #147581;
+  }
+}
+
+/* 768まで（モバイル） */
+@media screen and (max-width:768px){
+  dt {
+    margin-bottom: 10px;
+  }
+
+  input[type="submit"] {
+    padding: 1em;
+  }
+}
+
+/* フォーカスされた枠線の色を青以外にする場合、ユーザーエージェントスタイルのoutlineをかきかえる */
+input[type="email"]:focus,
+input[type="text"]:focus {
+  outline: orange auto 3px;
+}
