@@ -1,0 +1,104 @@
+@charset "utf-8";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 画面サイズより中のコンテンツが大きい場合の挙動。スクロールを見せる。何もやってないとあふれたままだが、これを設定するとスクロールバーで見せることができる。 */
+/* スクロールバーをあふれてなくても常に表示する */
+/* これをするとwidth:100vwにしたときの挙動が違う。スクロール領域も含めて横幅をとる */
+html {
+  overflow-y: scroll;
+}
+
+/* ブロックレベルだが、position:fixedやpositidon:absoluteをかけると、1枚浮くので画面幅を親としなくなり、欠課文字の大きさに縮む。 */
+/* なお、positidonをかけると、spanなどのインライン要素もブロックになるので幅や高さを指定できるようになる */
+header {
+  /* 100%でもよかったがなぜかスクロール領域も含めて横幅をとった */
+  width: 100vw; 
+
+  /* headerが一番最初に来ているから上に固定されているが、headerの上にpなどが来ていたらpの下に固定されてしまう。画面の左上に確実に固定する、ということをやるべき */
+  position: fixed; 
+}
+
+ul {
+  background: #37bd82;
+  text-align: center;
+}
+
+ul li {
+  /* 高さや幅を指定できるインラインにする＝横に並ぶ */
+  display: inline-block;
+
+  /* 「当店について」のliがrelativeになる。サブリストのulはあとでabsoluteをかけるので、「当店について」のliにrelativeをかければいい。今後、ほかのメニューにサブリストができた場合にも使えるのでul配下のli全体にした */
+  position: relative;
+}
+
+ul li a {
+  /* インライン要素だとpadding上下きかないので。inline-blockでもいい */
+  display: block;
+
+  padding: 1em;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+ul li a::after {
+  /* 疑似要素には必ずurlがいる */
+  content: url(../img/arrow.png);
+  margin-left: 10px;
+
+  /* 1行におけるコンテンツの位置調整。小文字xのちょうど真ん中 */
+  vertical-align: middle;
+}
+
+ul li a:hover {
+  background: #2c9869;
+}
+
+/* サブリスト限定のスタイリング */
+
+ul.sub-list {
+  display: none;
+  position: absolute; /* headerから外れるので緑の横並びからは外れる */
+
+  /* たまたま「当店について」のすぐ下に来たが、top:100%にすることで、上から常に100%の位置（「当店について」の文字が親要素になるので、これの高さ分下に下げるという指定） */
+  /* 逆にbottom:100%にすれば、下から上に繰り出されるポップアップメニューにも使える */
+  top: 100%;
+  left: 0;
+
+}
+
+/* ul.gnav-list > li:nth-child(3) {
+  background-color: orange;
+} */
+
+/* 隣接セレクタ。前の要素は指定できない、隣同士になる次の要素のみ指定できる。離れている兄弟要素は~で指定する */
+/* 
+ホバーは、aだけじゃなく、先祖のliやul、bodyにホバーしているのと同義。南口、北口にホバーしたときにdisplay:blockがはずれてしまうので、aではなくその上のliにまで広げることで、サブリストにホバーしたときdisplay:noneがきかないようにする */
+/* ul.gnav-list li a:hover + ul.sub-list {
+  display: block;
+} ではなく↓*/
+
+/* liをホバーしたときの中にいるサブリストの（孫でもいい） */
+/* ul.gnav-list li:hover > ul.sub-list にすると、「確実に、直下の子要素」という指定になるのでもっと限定的になる */
+ul.gnav-list li:hover ul.sub-list {
+  display: block;
+}
+
+
+/* 今は文字の長さぶんしか幅がとられず、マウスオーバーしたときの色塗りに余白ができてしまっていたが、liにwidth100%にすることで、li全体に色塗りがされるようになる */
+ul.sub-list li {
+  width: 100%;
+}
+
+main div {
+  background: #eee;
+  /* ウィンドウの高さに対して80% */
+  height: 80vh;
+  width: 90%;
+  margin: 0 auto 40px;
+}
