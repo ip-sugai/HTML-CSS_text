@@ -62,9 +62,9 @@ span {
   /* x,yは100pxうごく */
   transform: translate(-50%, -50%);
 
-  /* 去年から、translateプロパティが新しく出てきた。関数だとlotate scaleとか一緒にコントロールしないといけないので、以下の方が便利　rotate,scaleプロパティも出てきた skewはない */
-  translate: -50% -50%;
+  /* 去年から、translateプロパティが新しくできた。関数だとlotate scaleとか一緒にコントロールしないといけないので、以下の方が便利　rotate,scaleプロパティも出てきた skewはない */
+  /* translate: -50% -50%;
   rotate: 45deg;
-  scale: 1.5;
+  scale: 1.5; */
 }
 
