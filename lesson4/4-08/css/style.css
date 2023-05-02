@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  width: 100%;
+  padding: 1em;
+  background: #eee;
+}
+
+p {
+  width: 200px;
+  height: 200px;
+  background: #ff0;
+  color: #ef476f;
+}
+
+span {
+  font-size: 20px;
+}
+
+/* flexboxプロパティでインライン要素を親（黄色）の中で水平・垂直に中央寄せする */
+
+.flex {
+  display: flex;
+  /* flexだけかけると、交差軸は初期値stretchだから画像がのびる。文字は追いやられる */
+
+  align-items: center;
+  /* 垂直方向中央寄せ */
+
+  justify-content: center;
+  /* 水平方向中央寄せ */
+}
+
+/* positionプロパティで黄色の領域をdiv（灰色の領域）に対して中央寄せにする */
+/* 子要素にabsoluteをかけ、top leftで50%動かし、子要素の高さ、幅ぶん50%左上にずらす */
+.position {
+  height: 300px;
+  margin-top: 40px;
+
+  /* pの基準とする */
+  position: relative;
+}
+
+.position p {
+  position: absolute;
+
+  /* divの高さは300なので、150px下になる */
+  top: 50%;
+
+  /* divの幅は画面幅なので、左から、画面幅の50%ずれる */
+  left: 50%;
+}
+
+/* 左上を基準に50%としているので、かなり右下にいってしまう。自分自身の幅と高さ（200px）の分左上に戻すことで中央になる */
+
+.position p {
+  /* x,yは100pxうごく */
+  transform: translate(-50%, -50%);
+
+  /* 去年から、translateプロパティが新しく出てきた。関数だとlotate scaleとか一緒にコントロールしないといけないので、以下の方が便利　rotate,scaleプロパティも出てきた skewはない */
+  translate: -50% -50%;
+  rotate: 45deg;
+  scale: 1.5;
+}
+
