@@ -1,0 +1,42 @@
+<!-- 教科書はタグをそのままセレクタにも使っていて、class名はあんまりついていないが、ひとつひとつに細かくクラス名を付ける方がおすすめ 例えばheaderにも、class=site-headerとか -->
+<!-- bootstrapはあるCSSの設計思想にのっとってクラス名つけているので、クラス名つける参考になる -->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 検索結果で出てくる -->
+  <title>最短5日でダイバーデビュー！ - MdN DIVE</title>
+  <!-- 検索結果の説明で出てくる　metaは順番問わない -->
+  <meta name="description" content="MdN DIVEは千代田区にあるマンツーマンダイビングスクールです。5/31までWeb限定キャンペーンを実施中！">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+  <!-- ヘッダーのロゴはh1だったりpだったり。トップページはh1だけど、サブページでは他に重要なタイトルがh1になっていることが多く、ロゴはpとかdivになってたりもする -->
+
+  </header>
+  <main>
+    <!-- ①mvはタイトルがあるならsectionだけど、今回は画像だけだからdivかな -->
+    <div class="mv-area">メインビジュアル</div>
+
+    <!-- ①ブロックごとに見出しもあって分かれているからSectionかな -->
+    <section></section>
+    <section></section>
+    <section></section>
+
+    <!-- ①フッターの上のビジュアルとしての画像は、mainの背景にしたりfooterの背景にしたりもするけど、今回はdivにしよう -->
+    <div class="">下の画像</div>
+
+    <!-- ①アドレス -->
+    <address></address>
+
+    <!-- ①著作権はsmallというインライン（状況によってはpに囲まれているかもだけど） -->
+    <small></small>
+  </main>
+  <footer>
+
+  </footer>
+</body>
+</html>
