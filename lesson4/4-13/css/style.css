@@ -1,0 +1,264 @@
+@charset "utf-8";
+
+div {
+  width: 100px;
+  height: 100px;
+  padding: 1em;
+  margin: 2em 2em 4em;
+  background: #ad4444;
+  color: #fff;
+  font-size: 14px;
+}
+
+
+.width {
+  transition: width 0.5s ease-out 0s;
+  /* 変化の対象プロパティ */
+  transition-property: width;
+  /* 変化の時間の長さ */
+  transition-duration: 0.5s;
+  /* 変化のタイミング */
+  transition-timing-function: ease-out;
+  /* どれくらい遅らせて発動するか。初期値が0 */
+  transition-delay: 0s;
+}
+
+/* 変化後 */
+.width:hover {
+  width: 400px;
+}
+
+
+/*四角から丸に*/
+/* transition-timing-functionは初期値のease */
+.circle {
+  transition: border-radius 0.2s;
+}
+
+/* 丸くする */
+.circle:hover {
+  border-radius: 50%;
+}
+
+/*ホバーして1秒後にズームアップ*/
+/* 最初に書いたものがduration、次に登場するのがディレイになる */
+.scale {
+  transition: transform 0.5s ease-in-out 1s;
+  /* 変化するときの基準点を変える */
+  transform-origin: left top;
+}
+
+/* xy方向、いずれも1.5倍に伸びる(1.5, 2)と書けば別々の指定になる */
+.scale:hover {
+  transform: scale(1.5);
+}
+
+
+
+/*animationを使ったアニメーション*/
+/*ジグザグに動くアニメーション*/
+
+/*zigzagのキーフレームを定義*/
+@keyframes zigzag {
+
+  /* 0～50がease、50～100がease */
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(50px, 50px);
+  }
+
+  100% {
+    transform: translate(100px, 0px);
+  }
+}
+
+.sample1 {
+  animation: zigzag 2s ease 0s 3 normal;
+
+  /* 内訳 */
+  /* 名前（必須） */
+  animation-name: zigzag;
+  /* 時間（必須） */
+  animation-duration: 2s;
+  /* 速度とタイミング　初期値ease */
+  animation-timing-function: ease;
+  /* 遅延 */
+  animation-delay: 0s;
+  /* 繰り返し数　初期値1 */
+  animation-iteration-count: 3;
+  /* 再生方向 */
+  animation-direction: normal;
+}
+
+/*大きさと色が変わるアニメーション*/
+/*scale-and-colorのキーフレームを定義*/
+@keyframes scale-and-color {
+  0% {
+    background: #ad4444;
+    /* 倍率かかっていない状態からスタート */
+    transform: scale(1);
+  }
+
+  50% {
+    background: #3946ad;
+    transform: scale(1.5);
+  }
+
+  100% {
+    background: #4dad48;
+    /* 元に戻す */
+    transform: scale(1);
+  }
+}
+
+/* alternate　折り返し0→100、100→0に戻る */
+.sample2 {
+  animation: scale-and-color 4s linear 0s infinite alternate;
+}
+
+img {
+  /* svgの大きさ */
+  width: 100px;
+  /* となりの画像との距離 */
+  margin-right: 2em;
+}
+
+/* キーフレームで全体の抑揚をつける */
+/* rotateは2時限の回転 */
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  /* ちょっと早く半回転 */
+  30% {
+    transform: rotate(180deg);
+  }
+
+  /* ちょっとゆっくり半回転 */
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*ローディングアニメーション*/
+.sample3 {
+  animation: loading 1s linear 0s infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  /* ちょっと早く半回転 */
+  30% {
+    transform: rotate(180deg);
+  }
+
+  /* ちょっとゆっくり半回転 */
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*鼓動しているようなアニメーション*/
+@keyframes heart {
+  0% {
+    transform: scale(1);
+  }
+
+  8% {
+    transform: scale(1);
+  }
+
+  /* 少し大きくする */
+  15% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.sample4 {
+  animation: heart .8s ease 0s infinite normal;
+}
+
+/* スライドショーっぽいものを作る（クロスフェード） */
+.gallery {
+  /* 箱をとりあえず画像と同じ幅に */
+  width: 400px;
+  /* divに設定されている高さをなくす、背景を透明に、paddingを0に */
+  height: auto;
+  background: transparent;
+  padding: 0;
+  /* galleryを基準位置にする */
+  position: relative;
+}
+
+.gallery img {
+  /* 画像の大きさをもとのものに */
+  width: 100%;
+  margin: 0;
+  /* ブロック要素にすることで、画像がベースラインにのらなくなる */
+  display: block;
+}
+
+/* 1枚目の画像以外を重ねる */
+/* 1枚目を浮かせると、その後にくる要素が詰められてしまうので、1枚目だけを残した */
+.gallery img:not(:first-child) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* display: none; */
+}
+
+/* 1～4枚目まで同じ設定の部分だけは一括指定 */
+.gallery img {
+  animation: gallery 16s infinite;
+  animation-fill-mode: both;
+
+}
+
+.gallery img:first-child {
+  /* infinite 無限ループ */
+  /* animation: gallery 16s infinite; */
+}
+
+.gallery img:nth-child(2) {
+  /* 開始するまでの時間だけ変える */
+  animation-delay: 4s;
+  /* ↑だけだと、待っている間opacityの0が適用されない。発動する前のスタイル（backwards）、終わったあとのスタイル（rofwards）を決める（どっちのスタイルも適用するならboth） img全体にanimation-fill-mode:both;をかける */
+}
+
+.gallery img:nth-child(3) {
+  animation-delay: 8s;
+}
+
+/* last-childでもいい */
+.gallery img:nth-child(4) {
+  animation-delay: 12s;
+}
+
+@keyframes gallery {
+  0% {
+    opacity: 0;
+  }
+
+  /* 100/16=6.25、*3する */
+  6.25%,
+  25% {
+    opacity: 1;
+  }
+
+  /* 25+6.25 */
+  31.25%,
+  100% {
+    opacity: 0;
+  }
+}
