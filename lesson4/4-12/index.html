@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav>
+
+    <!-- チェックボックスとラベルをgnav-inputで紐づける -->
+
+    <!-- input:ch idはforと紐づける（classでいい）、classは装飾用-->
+    <input type="checkbox" id="gnav-input" class="gnav-hidden">
+    <!-- クリックするボタンがラベル　以下のidはclassでいい -->
+    <label for="gnav-input" id="gnav-btn">🍔</label>
+    <!-- コンテンツに被る（クリックするとgnavが閉じる）暗い部分 -->
+    <label for="gnav-input" id="gnav-black">黒</label>
+
+    <!-- 実際のナビゲーション部分 -->
+    <div id="gnav-content">
+      <ul class="gnav-list">
+          <li><a href="#">TOP<br>トップ</a></li>
+          <li><a href="#">NEWS<br>お知らせ</a></li>
+          <li><a href="#">ABOUT<br>当店について</a></li>
+          <li><a href="#">RECRUIT<br>採用情報</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+</html>

@@ -1,0 +1,111 @@
+@charset "utf-8";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* メニューの中身 */
+#gnav-content {
+  position: fixed;
+  top: 0;
+  /* position:fixedをやるとウィンドウを見るようになる。つまりウィンドウの100%左 */
+  left: -100%;
+
+  /* z-indexはまず親要素のレベルを見て、その後子要素を見るので、親要素のレベルが小さければ子要素は重なり順を上にできない */
+  z-index: 100;
+
+  /* 240pxまでは広がる、240pxで打ち止め */
+  width: 100%;
+  max-width: 240px;
+
+  /* xy位置 範囲 色 */
+  box-shadow: 6px 0 25px rgba(0, 0, 0, 0.15);
+
+  /* アニメーションの設定　何秒かけて変化するか */
+  transition: 0.3s;
+}
+
+ul.gnav-list {
+  background: #1b9aaa;
+  /* 全称セレクタでpadding0にしているのでいらない */
+  padding: 0;
+
+  /* ウィンドウと同じ高さ */
+  height: 100vh;
+  text-align: center;
+
+  opacity: 0.5;
+}
+
+ul.gnav-list li {
+  /* liの初期値はdisplay:list-itemだったが、blockにすることでリストマーカーがとれる */
+  display: block;
+}
+
+ul.gnav-list li a {
+  display: block;
+  padding: 1.5em;
+  color: #fff;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+/* 改行前のアルファベットを対象 */
+ul.gnav-list li a::first-line {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* checkboxを非表示にする */
+.gnav-hidden {
+  display: none;
+}
+
+/* labelで作るメニューボタン */
+#gnav-btn {
+  /* positionをかけると勝手にblock要素になるから、以下は正直いらない */
+  display: block;
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  /* gnav-contentにもz-indexはあるが、下に書いた方が強い。ただ、左側のメニューと右側のメニューでかぶさることはない */
+  z-index: 100;
+  /* center centerで中央寄せにはしているが、そもそもの画像が40*40なので位置は変わらない */
+  background: #1b9aaa url("../img/gnav-btn-open.png") center center;
+}
+
+/* 画面全体を覆う薄い膜部分 */
+#gnav-black {
+  display: none;
+  position: fixed;
+  z-index: 90;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* gnav-inputがチェックされたとき、兄弟要素のgnav-btnの背景画像を差し替える */
+#gnav-input:checked ~ #gnav-btn {
+  /* background: #1b9aaa url(../img/gnav-btn-close.png) center center no-repeat; */
+
+  /* 背景だけ変える場合はbackground-image */
+  background-image: url(../img/gnav-btn-close.png);
+
+}
+
+/* gnav-inputがチェックされたとき、黒の薄膜部分をnone→blockにして表示する */
+#gnav-input:checked ~ #gnav-black {
+  display: block;
+}
+
+/* #gnav-contentでleft-100%にしているので0にして元の位置に戻す */
+/* この戻る作業が0.3sのアニメーションになる */
+#gnav-input:checked ~ #gnav-content {
+  left: 0;
+}
