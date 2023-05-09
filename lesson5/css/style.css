@@ -1,1 +1,182 @@
 @charset "utf-8";
+
+/* 共通設定 */
+
+* {
+  box-sizing: border-box;
+}
+
+/* 文字や背景など、全体的に使う設定は、全体の親であるbodyで設定する */
+/* "ヒラギノ角ゴ ProN"はMac用、メイリオがWindows,それも適用されなかったらサンセリフ */
+body {
+  font-family: "ヒラギノ角ゴ ProN", Meiryo, sans-serif;
+  /* 100-900まで100刻み。400がノーマル。ただ100にしたとて、ヒラギノやメイリオには100のウェイトに対応していないので変わらない。700が太字 */
+  font-weight: 400;
+  /* だいたいのブラウザは16pxが標準なので、念のため入れた感じ */
+  font-size: 16px;
+  /* nomalize cssの設定が上書きされる */
+  line-height: 1.5;
+}
+
+img {
+  /* インライン要素をブロックにして、ベースラインとボトムの間にある下の余白を削除している */
+  display: block;
+}
+
+/* ヘッダーとメインビジュアル */
+/* クラス名をつけるべき */
+header img {
+  /* 横幅を指定し、左右autoで中央寄せ */
+  width: 170px;
+  margin: 0 auto;
+}
+
+/* 2000*910の画像 */
+.mv-area img {
+  /* %は親を見る。div→body＝ウィンドウ幅100%ということ */
+  width: 100%;
+}
+
+/* セクション共通 */
+/* ここもタグを直接セレクトしている、クラス名をつけるべき */
+section {
+  /* %は親を見る。body＝ウィンドウ幅100%ということ */
+  width: 100%;
+  /* 上下padding40 */
+  padding: 40px 0;
+}
+
+/* 親要素からみた順番（mainから見て何番目か） */
+/* nth-of-typeはmainから見たその要素の中で1番目、を見てくれる。nth-childは要素関係なく1番目を見るので、1番目の要素がdivのためきかなくなってしまう。ただし要素が増えたりすると破綻するので、やっぱりClassで指定した方がよかった */
+section:nth-of-type(1) {
+  background-color: #dec200;
+}
+
+section:nth-of-type(2) {
+  background-color: #3eb6bd;
+}
+
+section:nth-of-type(3) {
+  background-color: #3d5a6b;
+}
+
+/* sectionの中のコンテンツ幅はウィンドウ幅の70% */
+.section-inner {
+  width: 70%;
+  margin: 0 auto;
+}
+
+h2 {
+  border-bottom: 4px solid #fff;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+p {
+  margin-bottom: 40px;
+  color: #fff;
+}
+
+/* リスト */
+ol li {
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+/* テーブル */
+table {
+  /* .section-innerに対して80% */
+  width: 80%;
+  margin: 0 auto;
+  background: #fff;
+  /* 重なったものはひとつに */
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th,
+td {
+  padding: 1em;
+  border: 1px solid #3d5a6b;
+  color: #3d5a6b;
+}
+
+th {
+  background-color: #bfe1f6;
+}
+
+/* フォーム */
+form {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* 入力欄タイトル部 */
+form dt {
+  margin-bottom: 20px;
+}
+
+form dt,
+form label {
+  color: #fff;
+}
+
+form dt::before {
+  content: "◆";
+  margin-right: 10px;
+}
+
+/* 入力欄部分 */
+form dd {
+  margin-bottom: 40px;
+  /* 入力欄に入ってくるインデントを消す */
+  margin-left: 0;
+}
+
+input {
+  /* 入力欄をformいっぱいまで伸ばすが、ラジオボタンにも影響するので、本当はtype属性を入れて分けるべき */
+  width: 100%;
+  border: none;
+  /* 入力欄を太くする */
+  padding: 0.5em;
+  font-size: 1.1em;
+}
+
+/* " "がなくてもきく */
+input[type=radio] {
+  width: 1em;
+  /* ラジオボタン同士の間をあける */
+  margin-left: 24px;
+  /* ボタンとはい、いいえの間をあける */
+  margin-right: 4px;
+}
+
+button[type="submit"] {
+  background-color: #3eb6bd;
+  /* マージンの設定をしたいからブロックにした */
+  display: block;
+  margin: 40px auto 0;
+  width: 70%;
+  padding: 20px;
+  color: #fff;
+  font-size: 20px;
+  
+}
+
+.form-img-area img {
+  width: 100%;
+}
+
+/* フッター */
+footer {
+  padding: 20px;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+address,
+small {
+  margin-bottom: 10px;
+  color: #2f4858;
+
+}

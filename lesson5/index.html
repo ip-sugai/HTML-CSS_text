@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,33 +11,111 @@
   <title>最短5日でダイバーデビュー！ - MdN DIVE</title>
   <!-- 検索結果の説明で出てくる　metaは順番問わない -->
   <meta name="description" content="MdN DIVEは千代田区にあるマンツーマンダイビングスクールです。5/31までWeb限定キャンペーンを実施中！">
+  <!-- どのブラウザでも同じような見た目になるよう、一回リセットするnormalize.cssを先に読み込む -->
+  <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <header>
-  <!-- ヘッダーのロゴはh1だったりpだったり。トップページはh1だけど、サブページでは他に重要なタイトルがh1になっていることが多く、ロゴはpとかdivになってたりもする -->
-
+    <!-- ヘッダーのロゴはh1だったりpだったり。トップページはh1だけど、サブページでは他に重要なタイトルがh1になっていることが多く、ロゴはpとかdivになってたりもする -->
+    <h1>
+      <img src="img/logo.png" alt="MdN DIVE">
+    </h1>
   </header>
   <main>
     <!-- ①mvはタイトルがあるならsectionだけど、今回は画像だけだからdivかな -->
-    <div class="mv-area">メインビジュアル</div>
+    <div class="mv-area">
+      <img src="img/photo_01.jpg" alt="この夏最後のキャンペーン！最短5日でダイバーデビュー！">
+    </div>
 
     <!-- ①ブロックごとに見出しもあって分かれているからSectionかな -->
-    <section></section>
-    <section></section>
-    <section></section>
+    <!-- 背景色はsectionで、コンテンツを入れる箱を別に作る。これに最大幅を設定する -->
+    <!-- それぞれにクラス名をちゃんと設定していくことをお勧めする -->
+    <section>
+      <div class="section-inner">
+        <h2>Web限定キャンペーン中！</h2>
+        <p>5/31までにWebでお申し込みいただいた方限定で、特別価格を実施中です。MdN DIVEは安心のマンツーマンレッスン！お友達との参加も可能です。仲間と一緒にダイビングライセンスを取得して、世界中の海を楽しみましょう！
+        </p>
+      </div>
+    </section>
+    <section>
+      <div class="section-inner">
+        <h2>ライセンス取得までの流れ</h2>
+        <ol>
+          <li>学科講習（5-6時間）</li>
+          <li>プール実習（1-2日）</li>
+          <li>海洋実習（2日）</li>
+          <li>筆記試験</li>
+        </ol>
+      </div>
+      <table>
+        <tr>
+          <th>料金に含まれるもの</th>
+          <td>教材費・実習費・器材レンタル代・ライセンス申請料</td>
+        </tr>
+        <tr>
+          <th>料金に含まれないもの</th>
+          <td>交通費・宿泊費・追加ダイブ費（希望者のみ）</td>
+        </tr>
+      </table>
+    </section>
+    <section>
+      <div class="section-inner">
+        <h2>申し込みフォーム</h2>
+        <form action="program.php" method="post">
+          <dl>
+            <!-- 連動させたい文字にlabelをつける。idとforを一緒にしておく -->
+            <dt><label for="user-name">氏名</label></dt>
+            <dd>
+              <!-- データ送信時プログラムが使う箱の名前になる labelとの紐づけはid -->
+              <input type="text" name="user-name" id="user-name">
+            </dd>
+
+            <dt><label for="user-email">メールアドレス</label></dt>
+            <dd>
+              <!-- 教科書はtextだが、emailにするとブラウザ上でバリデーションがきく -->
+              <input type="email" name="user-email" id="user-email">
+            </dd>
+
+            <!-- 複数のラジオボタンを紐づけるには、nameを一緒にすること。さらにはい　いいえにれんどうするためlabel もつける　idとforを一致させること -->
+            <!-- 実際送信されるのがvalue、idは別々のものをつけないといけない -->
+            <dt>水泳経験はありますか</dt>
+            <dd>
+              <input type="radio" name="swim" id="swim-yes" value="はい"><label for="swim-yes">はい</label>
+              <input type="radio" name="swim" id="swim-no" value="いいえ"><label for="swim-no">いいえ</label>
+            </dd>
+          </dl>
+
+          <!-- divは装飾用 -->
+          <div class="form-submit">
+            <!-- <input type="submit">も役割は同じ。ただ閉じタグがない -->
+            <!-- 閉じタグがあれば疑似要素が使えるので、beforeで矢印アイコン入れたり、文字をspanで囲んで装飾もできる。デザインを凝りたいならbuttonがよい -->
+            <!-- buttonはtype=submitがデフォなので略OK。name idも入れてはいるが別にいらない -->
+            <button type="submit" name="submit" id="submit">申し込む</button>
+          </div>
+        </form>
+      </div>
+    </section>
 
     <!-- ①フッターの上のビジュアルとしての画像は、mainの背景にしたりfooterの背景にしたりもするけど、今回はdivにしよう -->
-    <div class="">下の画像</div>
-
-    <!-- ①アドレス -->
-    <address></address>
-
-    <!-- ①著作権はsmallというインライン（状況によってはpに囲まれているかもだけど） -->
-    <small></small>
+    <div class="form-img-area">
+      <img src="img/photo_02.jpg" alt="写真：サンゴ礁と熱帯魚">
+    </div>
   </main>
   <footer>
+    <!-- ①アドレス　サイト運営者情報であればaddressでよい -->
+    <address>
+      〒101-0051 <br>
+      東京都千代田区神田神保町1丁目105 <br>
+      00-0000-0000 <br>
+      株式会社MdN DIVE <br>
+    </address>
+
+    <!-- ①著作権はsmallというインライン（状況によってはpに囲まれているかもだけど） -->
+    <small>&copy; MDN Corporation.</small>
 
   </footer>
 </body>
+
 </html>
