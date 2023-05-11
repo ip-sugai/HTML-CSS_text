@@ -1,0 +1,82 @@
+/* ----基本設定---- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  /* 半角英数字はopen sansが優先されるが、日本語に対応していないので、日本語の部分はnoto sansが適用される（逆にすると欧文、日本語に対応しているnotosansに全部なってしまう。） */
+  font-family: 'Open Sans', 'Noto Sans JP', 'sans-serif';
+  font-weight: 400;
+  color: #333;
+  /* そもそも白だが、昔のIEは灰色だった */
+  background-color: #fff;
+}
+
+h1,
+h2,
+h3 {
+  /* ノーマライズは完全なるリセットではなく、ブラウザの際をなくすためのもの。リセットとは違う。hの設定は残ってるのでmarginの設定をあらためてする */
+  margin-top: 0;
+  line-height: 1.5;
+  /* 文字の大きさに対して20%開ける */
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+
+/* h2の下の日本語 */
+h3 {
+  color: #85a7cc;
+  font-size: 14px;
+}
+
+p {
+  /* デフォルトの指定を取っている */
+  margin-top: 0;
+  margin-bottom: 1.5em;
+  /* 文章の箱の末尾がきれいにそろう（文字の大きさが不揃いだから最後がたつく。スペースを埋める。最後の行だけは割付されない） */
+  text-align: justify;
+}
+
+address {
+  font-style: normal;
+  /* 初期値はitaric */
+}
+
+a {
+  color: #666;
+  text-decoration: none;
+
+  /* マウスオーバーとタブキーやマウスクリックによるフォーカス（選ばれた状態） */
+  // ＆は入れ子にした際の親セレクタの参照（３階層くらいまでオススメ）
+  &:hover,
+  &:focus {
+  color: #000;
+  }
+}
+
+
+
+
+/* ユーザーエージェントスタイルを再設定 */
+ul {
+  margin: 1em 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* htmlにwidthとか書いてあったとしても上書きされる */
+/* ブロックにしていない */
+img {
+  /* 親にあわせて拡大縮小 */
+  width: 100%;
+  /* 画像の比率をキープする */
+  height: auto;
+}
+
+section {
+  padding: 60px 0;
+}
+
+/* ----基本設定---- */

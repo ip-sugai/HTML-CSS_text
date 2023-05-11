@@ -1,0 +1,40 @@
+// 先頭でmixinを使う宣言をする
+// mixinに名前を付けないといけない（mixinを〇〇として使います）
+@use './mixins' as m;
+
+/* ----テキスト---- */
+.txt-center {
+  /* 他の要素でtext-align-leftとか書いちゃうと思ったように挙動しないことも。なので!importantつけると何よりも優先されるので絶対センターにする */
+  text-align: center !important;
+}
+
+/* 今回は電車でお越しの場合　しか適用されない */
+.txt-lead {
+  font-weight: 700;
+}
+
+/* ----テキスト---- */
+
+/* ----ディスプレイ関連---- */
+/* ----PCのときの設定---- */
+.sp-only {
+  display: block;
+}
+
+.pc-only {
+  display: none;
+}
+
+/* ----スマホのときの設定---- */
+// mixinのスニペットを呼び出す
+@include m.mq {
+  .sp-only {
+    display: none;
+  }
+  
+  .pc-only {
+    display: block;
+  }
+}
+
+/* ----ディスプレイ関連---- */

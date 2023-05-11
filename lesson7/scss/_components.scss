@@ -1,0 +1,114 @@
+/* コンパイル後残る　//はコンパイル後残らない（通常のCSSでは使えないから） */
+//コンパイル後残らない（通常のCSSでは使えない）
+
+// 先頭でmixinを使う宣言をする
+// mixinに名前を付けないといけない（mixinを〇〇として使います）
+@use './mixins' as m;
+
+/* ----h2---- */
+.h2-title {
+  /* タイトルを手前に、ダイヤを後ろにする */
+  position: relative;
+  /* 大文字は1文字単語として読み上げソフトに認識されてしまうから小文字で入力しておいてあとで大文字にする */
+  text-transform: uppercase;
+  z-index: 100;
+
+  /* h2の疑似要素 */
+  &::before {
+    content: "";
+    display: block;
+
+    --size: 40px;
+    width: var(--size);
+    height: var(--size);
+    /* width: 40px;
+  height: 40px; */
+
+    background-color: #a5d1ff;
+    position: absolute;
+    /* relativeをかけたh2に対して50% */
+    left: 50%;
+    /* 半径だけ左に戻して中央に。transformでもOK */
+    /* margin-left: -20px; */
+    /* calcは計算する関数 */
+    /* 対象が2行などになる場合は、topからの位置も指定しておいたほうがよい */
+    margin-left: calc(var(--size) / -2);
+
+    /* 45度回転してひしがた */
+    transform: rotate(45deg);
+    /* マイナス入れると仮想的に後ろに下がる */
+    z-index: -100;
+  }
+}
+/* ----h2---- */
+
+/* ----ボタン---- */
+/* ボタンベース */
+.btn {
+  /* a要素を使うから一度ブロックに aをブロックにすると幅いっぱいに広がっちゃうし、横に並べたい・text-alignなどで中央・左揃えや行揃えをしたいならinline-blockにするべき */
+  display: block;
+  padding: 20px 35px;
+  border-radius: 8px;
+  margin: 0 auto;
+  /* 送信ボタンには枠線が付いているのでそれをなくす */
+  border: none;
+
+  /* フォーカス時 */
+  &:hover,
+  &:focus {
+    background: rgba(0 0 0/0.7);
+    /* ボタンタグやinput submit は指にならないので指定する */
+    /* カタチいろいろ。crosshair＋ grabbing手でつかんでいるような　helpはてな　move上下左右重なった矢印　progressは砂時計 */
+    cursor: pointer;
+  }
+
+  /* 通常ボタンのメイクアップ担当 */
+  &-reserve {
+    color: #fff;
+    background: #6699ff;
+  }
+
+}
+
+/* ----ボタン---- */
+
+/* ----インナー---- */
+.inner {
+  padding: 0 15px;
+  margin: 0 auto;
+
+  // PC版のinnerはメディアクエリ付き
+  @include m.mq {
+    max-width: 1200px;
+  }
+}
+
+
+
+.test {
+  // mの中のtestを使う
+  @include m.test {
+    letter-spacing: 0.2em;
+  };
+
+  // mqでメディアクエリを呼び出す際、下のコンテンツも一緒にしてコンパイルしてくれる
+  @include m.mq {
+    color: green;
+   font-weight: bold;
+  } 
+}
+
+// 以下の設定をスニペットの記述と一緒にして出力してくれる
+// @include m.mq {
+//   .test2 {
+//     width: 20px;
+//   }
+
+//   .test3 {
+//     height: 40px;
+//   }
+
+//   .test4 {
+//     width: 100px;
+//   }
+// }

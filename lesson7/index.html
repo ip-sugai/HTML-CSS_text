@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rental space MdN</title>
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description=" content="レンタルスペースMdNの公式ホームページです。">
+
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <header class="header">
+
+    <!-- 最大幅が決まっているならheader-logo-menuも必要だけど今回はheaderだけでよかったかも -->
+    <div class="header-logo-menu">
+      <!-- ロゴ画像は共通 -->
+      <div class="logo-area">
+        <img src="img/site-logo_bk.svg" alt="rental space MdN">
+      </div>
+
+      <!-- ハンバーガーメニュー -->
+      <nav class="sp-only">
+        <!-- ↓あってもなくても良さそうだが -->
+        <div class="gnav-toggle">
+          <!-- ハンバーガーメニュー表示内容 -->
+          <!-- gnav-listと兄弟関係 -->
+          <!-- 押す・押してないを判断するチェックボックス -->
+          <!-- input:c フォームとして使わないのでnameはいらない -->
+          <input id="gnav-input" type="checkbox" class="gnav-hidden">
+          <!-- 三本のボタンになるところ -->
+          <!-- spanのbeforeとafterで三本線を作る　ポジション変えられる -->
+          <label for="gnav-input" id="gnav-open"><span></span></label>
+          <!-- 薄い背景になるところ -->
+          <label for="gnav-input" id="gnav-close" class="gnav-unshown"></label>
+          <!-- メニュー一覧 -->
+          <!-- gnav-contentに全体の装飾を任せる -->
+          <!-- gnav-inputのチェック有無で表示する・しないを判断する -->
+          <div class="gnav-content">
+            <ul class="gnav-menu">
+              <li class="gnav-item"><a href="#service">Service<br>サービス</a></li>
+              <li class="gnav-item"><a href="#plan">Plan<br>プラン</a></li>
+              <li class="gnav-item"><a href="#access">Access<br>アクセス</a></li>
+              <li class="gnav-item"><a href="#contact">Contact<br>コンタクト</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- PCの横並びナビメニュー -->
+      <nav class="pc-only">
+        <ul class="gnav-menu">
+          <li class="gnav-item"><a href="#service">Service<br>サービス</a></li>
+          <li class="gnav-item"><a href="#plan">Plan<br>プラン</a></li>
+          <li class="gnav-item"><a href="#access">Access<br>アクセス</a></li>
+          <li class="gnav-item"><a href="#contact">Contact<br>コンタクト</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section id="mv"></section>
+    <section id="info"></section>
+    <section id="service">
+
+    </section>
+    <section id="plan"></section>
+    <section id="access"></section>
+    <section id="pagetop"></section>
+  </main>
+  <footer></footer>
+</body>
+
+</html>

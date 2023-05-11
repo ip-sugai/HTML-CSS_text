@@ -1,0 +1,266 @@
+@charset "UTF-8";
+/* ----基本設定---- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  /* 半角英数字はopen sansが優先されるが、日本語に対応していないので、日本語の部分はnoto sansが適用される（逆にすると欧文、日本語に対応しているnotosansに全部なってしまう。） */
+  font-family: "Open Sans", "Noto Sans JP", "sans-serif";
+  font-weight: 400;
+  color: #333;
+  /* そもそも白だが、昔のIEは灰色だった */
+  background-color: #fff;
+}
+
+h1,
+h2,
+h3 {
+  /* ノーマライズは完全なるリセットではなく、ブラウザの際をなくすためのもの。リセットとは違う。hの設定は残ってるのでmarginの設定をあらためてする */
+  margin-top: 0;
+  line-height: 1.5;
+  /* 文字の大きさに対して20%開ける */
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+
+/* h2の下の日本語 */
+h3 {
+  color: #85a7cc;
+  font-size: 14px;
+}
+
+p {
+  /* デフォルトの指定を取っている */
+  margin-top: 0;
+  margin-bottom: 1.5em;
+  /* 文章の箱の末尾がきれいにそろう（文字の大きさが不揃いだから最後がたつく。スペースを埋める。最後の行だけは割付されない） */
+  text-align: justify;
+}
+
+address {
+  font-style: normal;
+  /* 初期値はitaric */
+}
+
+a {
+  color: #666;
+  text-decoration: none;
+  /* マウスオーバーとタブキーやマウスクリックによるフォーカス（選ばれた状態） */
+}
+a:hover, a:focus {
+  color: #000;
+}
+
+/* ユーザーエージェントスタイルを再設定 */
+ul {
+  margin: 1em 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* htmlにwidthとか書いてあったとしても上書きされる */
+/* ブロックにしていない */
+img {
+  /* 親にあわせて拡大縮小 */
+  width: 100%;
+  /* 画像の比率をキープする */
+  height: auto;
+}
+
+section {
+  padding: 60px 0;
+}
+
+/* ----基本設定---- */
+/* コンパイル後残る　//はコンパイル後残らない（通常のCSSでは使えないから） */
+/* ----h2---- */
+.h2-title {
+  /* タイトルを手前に、ダイヤを後ろにする */
+  position: relative;
+  /* 大文字は1文字単語として読み上げソフトに認識されてしまうから小文字で入力しておいてあとで大文字にする */
+  text-transform: uppercase;
+  z-index: 100;
+  /* h2の疑似要素 */
+}
+.h2-title::before {
+  content: "";
+  display: block;
+  --size: 40px;
+  width: var(--size);
+  height: var(--size);
+  /* width: 40px;
+  height: 40px; */
+  background-color: #a5d1ff;
+  position: absolute;
+  /* relativeをかけたh2に対して50% */
+  left: 50%;
+  /* 半径だけ左に戻して中央に。transformでもOK */
+  /* margin-left: -20px; */
+  /* calcは計算する関数 */
+  /* 対象が2行などになる場合は、topからの位置も指定しておいたほうがよい */
+  margin-left: calc(var(--size) / -2);
+  /* 45度回転してひしがた */
+  transform: rotate(45deg);
+  /* マイナス入れると仮想的に後ろに下がる */
+  z-index: -100;
+}
+
+/* ----h2---- */
+/* ----ボタン---- */
+/* ボタンベース */
+.btn {
+  /* a要素を使うから一度ブロックに aをブロックにすると幅いっぱいに広がっちゃうし、横に並べたい・text-alignなどで中央・左揃えや行揃えをしたいならinline-blockにするべき */
+  display: block;
+  padding: 20px 35px;
+  border-radius: 8px;
+  margin: 0 auto;
+  /* 送信ボタンには枠線が付いているのでそれをなくす */
+  border: none;
+  /* フォーカス時 */
+  /* 通常ボタンのメイクアップ担当 */
+}
+.btn:hover, .btn:focus {
+  background: rgba(0, 0, 0, 0.7);
+  /* ボタンタグやinput submit は指にならないので指定する */
+  /* カタチいろいろ。crosshair＋ grabbing手でつかんでいるような　helpはてな　move上下左右重なった矢印　progressは砂時計 */
+  cursor: pointer;
+}
+.btn-reserve {
+  color: #fff;
+  background: #6699ff;
+}
+
+/* ----ボタン---- */
+/* ----インナー---- */
+.inner {
+  padding: 0 15px;
+  margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+  .inner {
+    max-width: 1200px;
+  }
+}
+
+.test {
+  font-size: 20px;
+  color: blue;
+  background-color: yellow;
+  letter-spacing: 0.2em;
+}
+@media screen and (min-width: 768px) {
+  .test {
+    color: green;
+    font-weight: bold;
+  }
+}
+
+/* ----テキスト---- */
+.txt-center {
+  /* 他の要素でtext-align-leftとか書いちゃうと思ったように挙動しないことも。なので!importantつけると何よりも優先されるので絶対センターにする */
+  text-align: center !important;
+}
+
+/* 今回は電車でお越しの場合　しか適用されない */
+.txt-lead {
+  font-weight: 700;
+}
+
+/* ----テキスト---- */
+/* ----ディスプレイ関連---- */
+/* ----PCのときの設定---- */
+.sp-only {
+  display: block;
+}
+
+.pc-only {
+  display: none;
+}
+
+/* ----スマホのときの設定---- */
+@media screen and (min-width: 768px) {
+  .sp-only {
+    display: none;
+  }
+  .pc-only {
+    display: block;
+  }
+}
+/* ----ディスプレイ関連---- */
+/* ----.headerのスタイルを設定---- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 230, 230, 0.9);
+  z-index: 200;
+}
+
+.header-logo-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* ----.headerのスタイルを設定---- */
+/* ----ロゴの設定---- */
+.logo-area {
+  width: 200px;
+  margin: 0;
+  text-align: left;
+}
+
+/* ----ハンバーガーメニューの設定---- */
+.gnav-toggle {
+  position: relative;
+  margin-top: 12px;
+}
+
+.gnav-hidden {
+  display: none;
+}
+
+#gnav-open {
+  display: inline-block;
+  width: 33px;
+  height: 22px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+#gnav-open span,
+#gnav-open span::before,
+#gnav-open span::after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 25px;
+  border-radius: 3px;
+  background: #555;
+  display: block;
+}
+#gnav-open span::before {
+  bottom: -8px;
+}
+#gnav-open span::after {
+  bottom: -16px;
+}
+
+#gnav-close {
+  position: fixed;
+  background: #000;
+  /* top 0,left 0,right 0,bottom 0　という意味。fixedの場合、ウィンドウと同じ大きさに伸びるというショートハンドプロパティ */
+  inset: 0;
+  z-index: 90;
+  opacity: 0;
+  display: none;
+  transition: all 0.3s ease-in-out;
+}
+
+#gnav-content {
+  overflow: auto;
+}

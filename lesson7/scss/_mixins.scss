@@ -1,0 +1,18 @@
+// scssファイルで使うファイルという意味合いが強い
+// いつでも呼び出せるスニペットみたいなもの
+
+@mixin test {
+  font-size: 20px;
+  color: blue;
+  background-color: yellow;
+  // components.scssで書いたコンテンツも一緒になって、またcomponentsに戻り、それがコンパイルされる
+  @content;
+}
+
+// メディアクエリのスニペットを作る
+@mixin mq {
+  @media screen and (min-width:768px) {
+    // 実際ほかのファイルでこのスニペットを使うときに、そのファイルで指定したコンテンツを下に入れて、コンパイルする
+    @content;
+  }
+}

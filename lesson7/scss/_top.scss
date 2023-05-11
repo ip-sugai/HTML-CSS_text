@@ -1,0 +1,98 @@
+/* ----.headerのスタイルを設定---- */
+.header {
+  position: fixed;
+  // 上と左にピッタリ　念のため
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 230, 230, 0.9);
+  // navはheaderの子要素になるから、positionfixedをかけても必ず上に来る
+  // 兄弟要素ならz-indexもかかわってくるけど。
+  z-index: 200;
+}
+
+.header-logo-menu {
+  display: flex; //ロゴとメニューを横に並べる（子要素logo-area nav PCの方も）
+  flex-direction: row; //初期値なので不要
+  justify-content: space-between; //左右余白なし
+}
+
+/* ----.headerのスタイルを設定---- */
+
+
+/* ----ロゴの設定---- */
+.logo-area {
+  width: 200px;
+  margin: 0; //divはmargin paddingが最初から0だから別に要らない
+  text-align: left; //これも謎
+}
+
+/* ----ハンバーガーメニューの設定---- */
+.gnav-toggle {
+  // あんまりいらなさそう
+  position: relative;
+  // 内余白に12px追加
+  margin-top: 12px;
+}
+
+// チェックボックス
+.gnav-hidden {
+  display: none;
+}
+
+// 三本線ボタン
+#gnav-open {
+  display: inline-block; //labelはインラインだから幅と高さを指定できるように
+  width: 33px;
+  height: 22px;
+  //x-middleになる
+  // spanタグは3本線を実装するために使う　上の棒をspanで作り、2本目と3本目をbefore とafter ができる。spantagにposition relativeにすると全員浮いて重なる。で、positionを使うとtop bottomとかが使えるようになるからそれでずらす
+  vertical-align: middle;
+  // 教科書はspanに書いているが、カーソル変更の適用範囲はlabel全体なのでこっちに書く
+  cursor: pointer;
+
+  // 要素で線を入れたことで、細かい動きをanimetionでしていできるようになった
+  // rotateで傾けたりすると×にできる
+  // beforeをrotate:.125turn(45度),afterをbottom8px、rotate-.125turn(逆に45度)する、チェック入ったときに位置をずらすようにすればいい spanのrgbaを0にすればいい
+  //gnav-openの子要素　いちいちgnav-open spanってかかなくてもよくなった
+  span,
+  span::before,
+  span::after {
+    content: "";
+    //spanの親はlabelだが、positionを持っていない。toggleを親にする。でも別にgnav-openでも良かったのでは。。。
+    position: absolute;
+    height: 3px;
+    width: 25px;
+    border-radius: 3px;
+    background: #555;
+    display: block; //positionを付けると勝手にblock要素になるのでいらない
+  }
+
+  span::before {
+    bottom: -8px;
+  }
+
+  span::after {
+    bottom: -16px;
+  }
+
+}
+
+
+#gnav-close {
+  position: fixed; //ウィンドウの親を基準にする
+  background: #000;
+  /* top 0,left 0,right 0,bottom 0　という意味。fixedの場合、ウィンドウと同じ大きさに伸びるというショートハンドプロパティ */
+  inset: 0;
+  // gnav-contentが300なので、それより下げたということ
+  z-index: 90;
+  opacity: 0; //透明にする
+  display: none; //上にかぶさっているものをなきものにする
+  // 全てのプロパティを対象にアニメーションする。上のopacityも取り消されるので透明ではなくなるのだが、displayに関してはtransitionでどうにもできない。ただの表示形式なので、時間をかけてフワッと変わったりはしない。
+  transition: all 0.3s ease-in-out;
+}
+
+#gnav-content {
+  overflow: auto;
+}
