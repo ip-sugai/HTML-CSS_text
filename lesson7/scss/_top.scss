@@ -1,3 +1,6 @@
+@use './mixins' as m;
+
+
 /* ----.headerのスタイルを設定---- */
 .header {
   position: fixed;
@@ -48,7 +51,7 @@
   height: 22px;
   //x-middleになる
   // spanタグは3本線を実装するために使う　上の棒をspanで作り、2本目と3本目をbefore とafter ができる。spantagにposition relativeにすると全員浮いて重なる。で、positionを使うとtop bottomとかが使えるようになるからそれでずらす
-  vertical-align: middle;
+  vertical-align: middle; 
   // 教科書はspanに書いているが、カーソル変更の適用範囲はlabel全体なのでこっちに書く
   cursor: pointer;
 
@@ -89,10 +92,154 @@
   z-index: 90;
   opacity: 0; //透明にする
   display: none; //上にかぶさっているものをなきものにする
-  // 全てのプロパティを対象にアニメーションする。上のopacityも取り消されるので透明ではなくなるのだが、displayに関してはtransitionでどうにもできない。ただの表示形式なので、時間をかけてフワッと変わったりはしない。
+  // 全てのプロパティを対象にアニメーションする。上のopacityも取り消されるので透明ではなくなるのだが、displayに関してはtransitionでどうにもできない。ただの表示形式なので、時間をかけてフワッと変わったりはしない。よって薄黒い領域はパッと出てくる
   transition: all 0.3s ease-in-out;
 }
 
-#gnav-content {
+//gnav-contentはsp用縦型ナビを囲むdiv
+.gnav-content {
+  // 画面の高さが低くナビゲーションがはみ出す時のみスクロールバーを出す
   overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  width: 70%;
+  max-width: 300px;
+  height: 100%;
+  background: rgba(0, 0, 0, .8);
+  transition: .3s ease-in-out;
+  //画面外側に出しておく
+  transform: translateX(-105%);
+}
+
+// チェックが入ったらgnav-close（薄い黒）を画面に出す
+#gnav-input:checked ~ #gnav-close {
+  display: block;
+  // ↑でgnav-closeは0にしていた
+  opacity: .5;
+}
+
+// gnav-contentはclass!!!
+#gnav-input:checked ~ .gnav-content {
+  transform: translateX(0%);
+  box-shadow: 6px  0 25px rgba(0,0,0,.15);
+}
+
+// メニューの文字
+.gnav-menu {
+  display: flex;
+  flex-direction: column;
+  // 交差軸方向（今は横方向）中央寄せ
+  align-items: center;
+  padding-top: 50px;
+  text-transform: uppercase;
+}
+
+.gnav-item {
+  border-bottom: 2px dotted blue;
+  margin: 10px;
+  padding-bottom: 20px;
+
+  a {
+  color: #fff;
+  font-size: 12px;
+  display: block;
+  width: 200px;
+  text-align: center;
+  
+    &::first-line {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+}
+
+
+@include m.mq {
+  .logo-area {
+    width: 250px;
+  }
+}
+
+@include m.mq {
+  .gnav-menu {
+    // メニューの文字を横並び
+    flex-direction: row;
+    padding-top: 15px;
+    margin: 0;
+  }
+
+  .gnav-item {
+    border-bottom: none;
+    margin: 0;
+    padding-bottom: 0;
+
+    a {
+      color: #333;
+      width: 120px;
+
+      &:hover {
+        color: #85a7cc;
+      }
+    }
+  }
+}
+
+// sectionのスタイル
+.mv-area {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../img/hero.jpg);
+  background-size: cover;
+  background-position: center center;
+  // 中の子要素を横ならべに
+  display: flex;
+  // 水平方向を中央
+  justify-content: center;
+  // 垂直方向に中央
+  align-items: center;
+  // 縦方向の並び
+  flex-direction: column;
+}
+
+.mv-title {
+  color: #fff;
+  text-shadow: 0 0 3px #333;
+}
+
+@include m.mq {
+  // 親はbody
+  .mv-area {
+    width: 100%;
+    height: 600px;
+  }
+
+  .mv-title {
+    margin-top: 90px;
+  }
+}
+
+// sectionのスタイル
+.info-area {
+  background-color: #85a7cc;
+}
+
+.info-txt {
+  color: #fff;
+}
+
+@include m.mq {
+.info-content {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.info-txt {
+  flex: 1;
+  margin-left: 30px;
+}
+.info-area img {
+  flex: 1;
+}
 }

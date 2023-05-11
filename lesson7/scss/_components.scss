@@ -40,6 +40,7 @@
     z-index: -100;
   }
 }
+
 /* ----h2---- */
 
 /* ----ボタン---- */
@@ -86,16 +87,19 @@
 
 
 .test {
+
   // mの中のtestを使う
   @include m.test {
     letter-spacing: 0.2em;
-  };
+  }
+
+  ;
 
   // mqでメディアクエリを呼び出す際、下のコンテンツも一緒にしてコンパイルしてくれる
   @include m.mq {
     color: green;
-   font-weight: bold;
-  } 
+    font-weight: bold;
+  }
 }
 
 // 以下の設定をスニペットの記述と一緒にして出力してくれる

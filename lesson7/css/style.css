@@ -261,6 +261,124 @@ section {
   transition: all 0.3s ease-in-out;
 }
 
-#gnav-content {
+.gnav-content {
   overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  width: 70%;
+  max-width: 300px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  transition: 0.3s ease-in-out;
+  transform: translateX(-105%);
+}
+
+#gnav-input:checked ~ #gnav-close {
+  display: block;
+  opacity: 0.5;
+}
+
+#gnav-input:checked ~ .gnav-content {
+  transform: translateX(0%);
+  box-shadow: 6px 0 25px rgba(0, 0, 0, 0.15);
+}
+
+.gnav-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  text-transform: uppercase;
+}
+
+.gnav-item {
+  border-bottom: 2px dotted blue;
+  margin: 10px;
+  padding-bottom: 20px;
+}
+.gnav-item a {
+  color: #fff;
+  font-size: 12px;
+  display: block;
+  width: 200px;
+  text-align: center;
+}
+.gnav-item a::first-line {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+  .logo-area {
+    width: 250px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .gnav-menu {
+    flex-direction: row;
+    padding-top: 15px;
+    margin: 0;
+  }
+  .gnav-item {
+    border-bottom: none;
+    margin: 0;
+    padding-bottom: 0;
+  }
+  .gnav-item a {
+    color: #333;
+    width: 120px;
+  }
+  .gnav-item a:hover {
+    color: #85a7cc;
+  }
+}
+.mv-area {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../img/hero.jpg);
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.mv-title {
+  color: #fff;
+  text-shadow: 0 0 3px #333;
+}
+
+@media screen and (min-width: 768px) {
+  .mv-area {
+    width: 100%;
+    height: 600px;
+  }
+  .mv-title {
+    margin-top: 90px;
+  }
+}
+.info-area {
+  background-color: #85a7cc;
+}
+
+.info-txt {
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .info-content {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+  .info-txt {
+    flex: 1;
+    margin-left: 30px;
+  }
+  .info-area img {
+    flex: 1;
+  }
 }
