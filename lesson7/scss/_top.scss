@@ -1,3 +1,5 @@
+//スマホ版の時、メニュー名をクリックしてサイト内移動をしたあと、ページがひっこまない。JSで仕掛けをつくるのがいい。
+
 @use './mixins' as m;
 @use './variables' as *;
 
@@ -227,6 +229,7 @@
 
   // 親はbody
   .mv-area {
+    // 100vwのままだとスクロールバーを含めたmvサイズになってしまうので変更
     width: 100%;
     height: 600px;
   }
@@ -355,5 +358,132 @@
     margin-top: 0; //特に意味なし
     margin-left: 15px;
     margin-right: 15px;
+  }
+}
+
+//アクセス
+.access-area {
+  padding-bottom: 0;
+}
+
+.access-area img {
+  display: block;
+  max-width: 280px;
+  max-height: 280px 
+  border-radius 50%;
+  overflow: hidden;
+  margin: 10px auto 30px;
+}
+
+// 親要素をrelative
+.access-maparea {
+  position: relative;
+
+  // 高さも親要素が基準だが、親が高さ持っていない場合は影響されない
+  // 上側の内余白は幅と同じにしている
+  // padding-topの代わりにascpect-ratioプロパティで1/1とか16/9とかすると簡単に画像の比率を設定できる
+  padding-top: 100%;
+  background-color: yellow;
+}
+
+// 子要素をabsolute
+.access-map {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@include m.mq {
+  .access-content {
+    display: flex;
+    flex-direction: row; //書かなくてもOK　もともとrow
+    align-items: center; //縦方向中央寄せ
+
+    // padding-left: 150px;
+    //左寄りになっているコンテンツを目分量で左に寄せてるが、画面サイズを変えると文字と画像の間がかなり狭まって気になる。paddingを左右で均等に開けるか、パーセンテージで決めるといいかも
+    padding-left: 75px;
+    padding-right: 75px;
+
+    // padding-right: 10%;
+  }
+
+  .access-maparea {
+    padding-top: 30%;
+    //ascpect-ratio 3/1
+  }
+}
+
+//ページトップ
+#pagetop {
+  text-align: right;
+  padding: 15px;
+  background-color: #f0f0f0;
+
+  a::after {
+    content: "";
+    background: url(../img/list-marker.svg);
+    width: 16px;
+    height: 16px;
+
+    // これがないとインライン要素だから画面上に表示されない
+    display: inline-block;
+
+    //少し下におかれる
+    vertical-align: middle;
+
+    //少し上にあげる
+    margin: 0 0 3px;
+
+    // 矢印方向を上に向かせる
+    transform: rotate(-90deg);
+  }
+
+}
+
+//footer全体のスタイル
+.foot-area {
+  color: #fff;
+  text-align: center;
+  padding-top: 40px;
+  background-color: #596680;
+}
+
+.foot-logo {
+  margin: 0 auto 20px;
+}
+
+.text-phone,
+.text-phone a {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 40px;
+}
+
+// 本当は以下のようにaにはfffだけ適用すればいい。
+// .txt-phone a {
+//   color: #fff;
+// }
+
+.foot-area_copy {
+  color: #ccc;
+  font-size: 12px;
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+}
+
+@include m.mq {
+  //768以上の時は
+  //href属性がtel:で始まるa要素に対して、
+  //イベントを何も起こさない（パソコン版では電話アプリにつながない）
+  //キャレットは～で始まる、という意味。
+  a[href^="tel:"] {
+    pointer-events: none;
   }
 }
