@@ -1,0 +1,9 @@
+:root {
+  --color-primary: #85a7cc;
+  // 使用時　var(--color-primary)
+}
+
+// sassの変数
+$color-primary: #85a7cc;
+
+$color-primary-dark: #527acc;

@@ -1,8 +1,12 @@
+// ちょっとしたスタイルを保存していく
+
 // 先頭でmixinを使う宣言をする
 // mixinに名前を付けないといけない（mixinを〇〇として使います）
 @use './mixins' as m;
 
 /* ----テキスト---- */
+
+// 各セクションのリード部分
 .txt-center {
   /* 他の要素でtext-align-leftとか書いちゃうと思ったように挙動しないことも。なので!importantつけると何よりも優先されるので絶対センターにする */
   text-align: center !important;

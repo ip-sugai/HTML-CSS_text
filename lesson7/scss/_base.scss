@@ -1,6 +1,14 @@
+@use './variables' as *;
+
 /* ----基本設定---- */
 * {
   box-sizing: border-box;
+}
+
+// スクロールのふるまい
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
 body {
@@ -27,7 +35,7 @@ h3 {
 
 /* h2の下の日本語 */
 h3 {
-  color: #85a7cc;
+  color: $color-primary;
   font-size: 14px;
 }
 
@@ -52,7 +60,7 @@ a {
   // ＆は入れ子にした際の親セレクタの参照（３階層くらいまでオススメ）
   &:hover,
   &:focus {
-  color: #000;
+    color: #000;
   }
 }
 

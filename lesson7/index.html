@@ -85,12 +85,127 @@
         <img src="img/img-info.jpg" alt="レンタルスペースMdNロビーの写真">
       </div>
     </section>
-    
-    <section id="service">
+
+    <section id="service" class="service-area">
+      <div class="inner">
+        <h2 class="h2-title">Service</h2>
+        <h3>サービス</h3>
+        <p class="txt-center">全てのプランに標準でご利用いただけるサービスです。<br
+            class="pc-only">その他にも会議に必要な部品など数多く取り揃えておりますのでお申し込み時にお問い合わせください。</p>
+      </div>
+      <ul class="service-content">
+        <li class="service-item">
+          <img src="img/service-icon_01.svg" alt="">
+          <h4>Free Wi-Fi</h4>
+          <p>無料のWi-Fiを完備しております。ご自由にご利用ください。</p>
+        </li>
+
+        <li class="service-item">
+          <img src="img/service-icon_02.svg" alt="">
+          <h4>収録サービス</h4>
+          <p>会議内容を収録できます。ボイスレコーダーの貸し出しになります。</p>
+        </li>
+
+        <li class="service-item">
+          <img src="img/service-icon_03.svg" alt="">
+          <h4>ホワイトボード</h4>
+          <p>プリント可能なホワイトボードを各部屋に設置しています。</p>
+        </li>
+
+        <li class="service-item">
+          <img src="img/service-icon_04.svg" alt="">
+          <h4>ドリンクサービス</h4>
+          <p>ロビーのドリンクバーをご利用いただけます。
+          </p>
+        </li>
+      </ul>
 
     </section>
-    <section id="plan"></section>
-    <section id="access"></section>
+    <section id="plan" class="plan-area">
+      <div class="inner">
+        <h2 class="h2-title">Plan</h2>
+        <h3>ご利用プラン</h3>
+
+        <p class="txt-center">ご利用人数や利用目的に合わせて、 <br class="sp-only"> 様々なプランをご用意しております。</p>
+        <ul class="plan-content">
+          <li class="plan-item">
+            <img src="img/img-plan_01.jpg" alt="ミーティングプラン">
+            <!-- 余白用 -->
+            <div class="plan-info">
+              <h4 class="plan-title">ミーティングプラン</h4>
+              <p>少人数のミーティング向けプランです。全室、外が見える開放感あるお部屋で、30分からのご利用が可能です。</p>
+
+              <ul class="plan-list">
+                <li>2〜6人でのご利用</li>
+                <li>モニター</li>
+                <p class="plan-price">3,000円／30分〜</p>
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="plan-item">
+            <img src="img/img-plan_02.jpg" alt="会議室プラン">
+            <!-- 余白用 -->
+            <div class="plan-info">
+              <h4 class="plan-title">会議室プラン</h4>
+              <p>PCの投影が出来るワイドモニター付きのプランです。プレゼンテーションやレッスンなどでもご利用いただけます。</p>
+
+              <ul class="plan-list">
+                <li>4〜10人でのご利用</li>
+                <li>50インチモニター</li>
+                <p class="plan-price">20,000円／60分〜</p>
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="plan-item">
+            <img src="img/img-plan_03.jpg" alt="会議室プラン">
+            <!-- 余白用 -->
+            <div class="plan-info">
+              <h4 class="plan-title">会議室プラン</h4>
+              <p>大人數対応のプランです。パーティションで区切ることが出来ますので、利用人数でお部屋の大きさが変わります。</p>
+
+              <ul class="plan-list">
+                <li>30〜100人でのご利用</li>
+                <li>プロジェクター</li>
+                <p class="plan-price">60,000円／60分〜</p>
+              </ul>
+            </div>
+          </li>
+
+        </ul>
+
+        <button type="button" class="btn btn-reserve" onclick="location.href='#'">Web予約はこちら</button>
+      </div>
+    </section>
+
+    <section id="access" class="access-area">
+      <div class="inner">
+        <h2 class="h2-title">Plan</h2>
+        <h3>ご利用プラン</h3>
+
+        <div class="access-content">
+          <div>
+            <div class="txt-lead">電車でお越しの場合</div>
+            <p>神保町駅 徒歩5分<br>
+              神保ビルの3Fが受付になります。<br>
+              北口から商店街をまっすぐ抜け、市役所を左折。徒歩5分。</p>
+          </div>
+          <img src="img/img-access.jpg" alt="神保ビル">
+        </div>
+      </div>
+
+      <div class="access-maparea">
+        <!-- //Lazy loadingとは画像がビューポート外にある時は読み込みを実行せず、ビューポートに近づいた時に画像の読み込みを開始する、表示速度を最適化する名称のことです。 -->
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.299430064504!2d139.75606978885492!3d35.694248500000015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c104beaaaab%3A0xfa40908fa3717216!2z56We5L-d55S65LiJ5LqV44OT44Or44OH44Kj44Oz44Kw!5e0!3m2!1sja!2sjp!4v1683869121434!5m2!1sja!2sjp"
+          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+    </section>
     <section id="pagetop"></section>
   </main>
   <footer></footer>
