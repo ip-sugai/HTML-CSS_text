@@ -1,0 +1,79 @@
+// mixin使いますよ宣言
+@use './mixins' as *; //名前を付けたくない場合、*に。mにしたら、m.mqと書く。アスタリスクの場合名前を省略できるのでmqのみでOK
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+  line-height: 1.8;
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans JP", "ヒラギノ角ゴ ProN W3", "ヒラギノ角ゴシック W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+  color: #333;
+}
+
+// 少し詰める
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.5;
+}
+
+// 下層ページのスタイル　トップでは使わない
+.heading-title {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+// リンクにtransition ＝マウスオーバーでふわっとさせる
+// 0.3秒かけて、ちょっと（.8）薄くなる
+a {
+  color: #75af57;
+  text-decoration: none;
+  transition: opacity .3s;
+
+  &:hover {
+    opacity: .8;
+  }
+}
+
+img {
+  max-width: 100%; //画像のもともとの大きさ、またはwidthで指定した幅 htmlに入れている240pxが最大になる
+  height: auto;
+  vertical-align: bottom; // imgのベースラインの対策　vertical-align:top middleでもいい　display:blockでもOK
+}
+
+ul {
+  padding: 0; //初期値とっぱらう
+  list-style: none;
+}
+
+//articleはニュース記事・ブログ記事に対して使う　独立したコンテンツが対象　article１こで一人歩きできるもの
+section,
+article {
+  max-width: 1140px;
+  padding: 0 15px;
+  margin: 0 auto; //中央揃え　margin-inline:autoもOK横書きだと左右、縦書きだと上下 margin-blockもある
+}
+
+//使うときはinclude
+// mqは初期値768
+@include mq {
+  .heading-title {
+    font-size: 36px;
+  }
+}
+
+// $breakpointをlgにすると992
+//bodyのフォントサイズが14→16になり、heading-titleが20→36→48になる
+@include mq(lg) {
+  body {
+    font-size: 16px;
+  }
+
+  .heading-title {
+    font-size: 48px;
+  }
+}

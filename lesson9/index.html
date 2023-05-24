@@ -1,20 +1,44 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700&amp;display=swap">
-  <link rel="icon" href="./img/favicon.ico">
   <title>Go! CAMP</title>
-  <link rel="stylesheet" href="./css/normalize.css">
+
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- ファビコン -->
+  <link rel="icon" href="./img/favicon.ico">
+
+  <!-- ノーマライズCSS　今回はCDNで持ってくる normalize.min.cssは圧縮されているファイル(特にいじらないから圧縮版でOK)-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- スタイルシート -->
   <link rel="stylesheet" href="css/style.css">
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+  <!-- jquery　ここじゃなくてもいい jqueryもライブラリファイルだが、本家のサイトやCDNjsでホスティングされている-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+    integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- こっちは自分で作成するファイル script srcを使う ./は現在の位置　カレントディレクトリ-->
   <script src="./js/script.js"></script>
 </head>
+
 <body class="top">
   <header>
-    <a href="#" class="header-logo"><img src="./img/logo.svg" alt="Go! CAMP"></a>
+    <!-- ./はindex.htmlという意味　/だけだと教科書フォルダになってしまう -->
+    <!-- ロゴ画像のmax-widthは240になる　もともとは95mmあったが -->
+    <a href="./" class="header-logo"><img src="./img/logo.svg" alt="Go! CAMP" width="240"></a>
     <ul class="header-gnav">
       <li><a href="#">トップページ</a></li>
       <li><a href="#">Go! CAMPについて</a></li>
@@ -31,7 +55,9 @@
     <div class="top-feature">
       <div class="top-feature_box">
         <h2>Go! CAMPについて</h2>
-        <p>Go! CAMPは、都心からおそよ2時間で行ける、アクセス抜群のキャンプ場です。デイキャンプからオートキャンプ、BBQなど全６種類のサイト・エリアをご用意しております。<br>静かな環境を楽しむ「静謐の森」サイト、ファミリーや仲間とわいわい楽しむBBQ場にも隣接したAC電源付きオートキャンプサイトなど、さまざまな目的にあわせた施設をお楽しみください。</p>
+        <p>Go!
+          CAMPは、都心からおそよ2時間で行ける、アクセス抜群のキャンプ場です。デイキャンプからオートキャンプ、BBQなど全６種類のサイト・エリアをご用意しております。<br>静かな環境を楽しむ「静謐の森」サイト、ファミリーや仲間とわいわい楽しむBBQ場にも隣接したAC電源付きオートキャンプサイトなど、さまざまな目的にあわせた施設をお楽しみください。
+        </p>
         <a href="#">続きを読む</a>
       </div>
       <img src="./img/photo-img01.jpg" alt="">
@@ -40,7 +66,9 @@
     <div class="top-feature">
       <div class="top-feature_box">
         <h2>過ごし方</h2>
-        <p>静かな環境を楽しむ「静謐の森」サイトでは、満天の星空や木々のせせらぎを満喫いただけます。AC電源付きオートキャンプサイトでは、大人数でのバーベキューに最適です。キャンピングカーでのお越しの方にも人気です。<br>アクティビティ面では、釣り堀、川原での水遊び（夏季のみ）、四季を通じて楽しめるトレッキングコースなどさまざまな楽しみ方を提供しております。</p>
+        <p>
+          静かな環境を楽しむ「静謐の森」サイトでは、満天の星空や木々のせせらぎを満喫いただけます。AC電源付きオートキャンプサイトでは、大人数でのバーベキューに最適です。キャンピングカーでのお越しの方にも人気です。<br>アクティビティ面では、釣り堀、川原での水遊び（夏季のみ）、四季を通じて楽しめるトレッキングコースなどさまざまな楽しみ方を提供しております。
+        </p>
         <a href="#">続きを読む</a>
       </div>
       <img src="./img/photo-img02.jpg" alt="">
@@ -84,4 +112,5 @@
     <small>&copy; MdN Corporation.</small>
   </footer>
 </body>
+
 </html>

@@ -1,7 +1,9 @@
 // スタイルシートをロードする　アンダーバーや拡張子不要
-// mixinは各ページで利用
 @forward './variables';
+@forward './mixins';
 @forward './base';
 @forward './components';
 @forward './utils';
-@forward './top';
+@forward './pages/';
+
+//./pages/indexを省略している

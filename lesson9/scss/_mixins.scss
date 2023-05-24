@@ -1,0 +1,19 @@
+// scssファイルで使うファイルという意味合いが強い
+
+// メディアクエリのスニペットを作る
+//　持っているキーワードによって条件分岐する　$breakpointという条件分岐のキーワードを持った変数と、$minwidthという実際の値を持った変数が出てくる。
+@mixin mq($breakpoint: md) {
+  //最初に変数定義
+  $minwidth: 768px; //$minwidthに768を入れる
+
+  //条件分岐
+  @if $breakpoint == lg {
+    //もし$breakpointがlgだったら
+    $minwidth: 992px; //$minwidthに992を入れる
+  }
+
+  @media screen and (min-width:$minwidth) {
+    // 実際ほかのファイルでこのスニペットを使うときに、そのファイルで指定したコンテンツを下に入れて、コンパイルする
+    @content;
+  }
+}

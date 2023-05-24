@@ -1,0 +1,65 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+  line-height: 1.8;
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans JP", "ヒラギノ角ゴ ProN W3", "ヒラギノ角ゴシック W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+  color: #333;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.5;
+}
+
+.heading-title {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+a {
+  color: #75af57;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+a:hover {
+  opacity: 0.8;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+section,
+article {
+  max-width: 1140px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .heading-title {
+    font-size: 36px;
+  }
+}
+@media screen and (min-width: 992px) {
+  body {
+    font-size: 16px;
+  }
+  .heading-title {
+    font-size: 48px;
+  }
+}/*# sourceMappingURL=style.css.map */
