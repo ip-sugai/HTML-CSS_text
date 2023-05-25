@@ -1,0 +1,223 @@
+// mixin使いますよ宣言
+@use './mixins' as *;
+
+//　ヘッダー
+// SP版のハンバーガー、出てくるナビは固定
+// pc版は固定ないがナビを１個でやりくりする.左にロゴ、右にメニュー＝２カラムを想定し、いったんflexで作る
+
+header {
+  display: flex;
+  justify-content: space-between; //画像ひだり、ナビが右
+  align-items: center; //画像とナビを垂直中央寄せ。教科書の例はstartになっているけど
+
+  max-width: 1300px; //ヘッダー幅の最大値が1300と決まっている
+  margin: 0 auto; //ヘッダーのコンテンツを中央寄せ
+
+  // ロゴの位置
+  padding: 20px 15px 10px;
+
+
+  // headerを固定する場合、他のコンテンツよりも上に固定しないといけないため、z-indexをいじる必要がある。ただz-indexはstaticだときかないから、relativeにして、z-indexを上の方にする（今回は固定しないけど）。あと「キャンプへいこう！」の文字の方をz-index10にして下にまわす
+  position: relative;
+  z-index: 100;
+}
+
+//ハンバーガーのボタン　lesson7
+.header-button {
+  //ボタン固定
+  position: fixed;
+
+  //クリックできる領域を周りにも広げる今回結構でかいけど44でも
+  width: 75px;
+  height: 75px;
+
+  // position: fixed;をかけて右上に位置を指定する
+  top: 0;
+  right: 0;
+
+  // ボタンのもとの色をなくす　画像なし、他の値を初期値にする　transparent:0になる
+  //枠線もきえる
+  background: none;
+  border: none;
+
+  // ボタンタグ75pxのど真ん中にspanを入れるための処置
+  display: flex;
+  justify-content: center; //主軸の真ん中
+  align-items: center; //交差軸の真ん中
+
+  // navメニューが出てきても一番上に出てくるようにする
+  z-index: 1;
+
+  //ハンバーガーの線をゆっくり動かす
+  .icon,
+  .icon::before,
+  .icon::after {
+    transition: .3s;
+  }
+
+  //iconって汎用的なクラス名なので制限をかけるといい。
+  .icon {
+    // spanはインラインなので幅・高さ指定できないのでブロックにする
+    display: block;
+
+    width: 24px;
+    height: 2px;
+    background: #eee;
+
+    // before,afterを動かすための親に設定する
+    position: relative;
+  }
+
+  // 共通設定
+  .icon::before,
+  .icon::after {
+    content: ''; //これがないとbefore after発生しない
+    width: 100%; //常に親に合わせる
+    height: 100%; //常に親に合わせる
+
+    // 位置を移動するための処置(.iconを基準位置にする)
+    position: absolute;
+
+    background: #eee;
+    left: 0; //ちょっと右にズレているのをなおす
+  }
+
+  .icon::before {
+    top: -8px;
+  }
+
+  .icon::after {
+    top: 8px;
+  }
+
+  //ハンバーガーをクリックしたら真ん中のspanをいったんなくし、beforeとafterだけにして、×にする
+  //bodyがactiveのときのheader-navの配下のiconクラス（spanのこと）を透明にする
+  // 空けないと子孫セレクタにならない。くっつけると要素にくっつく。今回はbodyの配下のbuttonの配下の.icon(span)ということ
+  body.active & .icon {
+    background: transparent;
+  }
+
+  body.active & .icon::before,
+  body.active & .icon::after {
+    top: 0;
+    background: #000;
+  }
+
+  //before afterを45度ずつまげて×にする　.125turnでもOK
+  body.active & .icon::before {
+    transform: rotate(45deg);
+  }
+
+  body.active & .icon::after {
+    transform: rotate(-45deg);
+  }
+
+}
+
+// 真ん中がなくなり、beforeとafterが動いて×になる
+// デスクトップの際button非表示
+
+
+// ナビ
+.header-gnav {
+  // fixedでナビ固定にして、高さ幅いっぱいの領域にする　vh vwでも
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  // さらに、fixedの位置もちゃんと指定する　right0でもいい
+  top: 0;
+  left: 0;
+
+  // 文字を中央揃え
+  text-align: center;
+
+  //メニューの白い背景色
+  background: rgba(255 255 255/0.9);
+
+  // 画面の105%外においやる
+  transform: translateX(105%);
+  // 出てくるときの動き
+  transition: .3s ease;
+
+  // 画面の中央にメニューを出す一例
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+
+  //JSでactiveクラスを付けたら
+  // &.active {
+  //   transform: translateX(0);
+  // }
+
+  //bodyがactiveになったときの子孫セレクタである.header-gnav…という意味になる
+  body.active & {
+    transform: translateX(0);
+  }
+
+  //　教科書はulにflexをかけて画面の中央にメニューを出している
+  ul {
+    display: flex; //メニューを縦並びにするため
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; //縦並べにする
+    height: 100%; //ulを画面いっぱいにする
+    margin: 0; //上にある少しの余白をなくす
+  }
+
+  a {
+    color: #333;
+    font-weight: bold;
+    font-size: 18px;
+    display: block; //paddingのため
+    padding: 0.8em; //上下左右の余白0.8文字分
+  }
+
+}
+
+
+//768以上のメディアクエリ
+@include mq {
+
+  // ハンバーガーボタンを消す
+  .header-button {
+    display: none;
+  }
+
+  //追い出していたメニューを出す
+  .header-gnav {
+    transform: translateX(0%);
+
+    // position:fixedをかけているから逆に表示する、背景色もやめる
+    position: static;
+    background: none;
+
+    // 横に並ばせる　ulで制御していた
+    ul {
+      flex-direction: row; //横並びにもどる
+      justify-content: flex-end; //終点に寄せる
+    }
+  }
+
+}
+
+//992以上
+@include mq(lg) {
+
+  header {
+    padding-top: 30px; //もう少しあける
+  }
+
+  // flexがaにきいているせいで伸び縮みしているロゴのshrinkをやめる
+  // min-width360にしても同じ
+  .header-logo {
+    flex-shrink: 0;
+  }
+
+  .header-logo img {
+    //htmlの240を上書きする。この場合のmax-widthは360pxになる
+    width: 360px;
+  }
+}
+
+
+//　フッター

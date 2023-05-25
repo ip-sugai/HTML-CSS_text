@@ -1,0 +1,59 @@
+@use '../mixins' as *; //1階層上
+
+.hero {
+  background: url(../img/photo-hero.jpg) no-repeat center center;
+  // sizeは別に書くとわかりやすい
+  background-size: cover;
+  max-width: 1300px;
+  height: 420px;
+
+  // ネガティブマージンを使うと、後続のコンテンツがちゃんと追従する。transform transrateYにすると画像だけが動いてしまい、後続とのあいだがあいてしまう
+  //1300pxまで広がり、それ以降は真ん中に配置してほしいのでauto 左右は0
+  margin: -70px auto 0;
+
+  // h1にはmargin-topがあるため、親にpaddingを設定したり、borderにもってきたりすれば、h1のmargin-topが空いてしまう。親要素でmarginを設定して子要素にmarginを持たせた方がいい
+
+  display: flex;
+  flex-direction: column;
+
+  //主軸の向きが縦になった。主軸に対して中央寄せはjustify-content
+  justify-content: center;
+
+  // align-items: center;でもいいが、いまは主軸に対してtextがストレッチになっているので、横幅いっぱいになっている。それを利用して、text-alignで中央寄せにしてもいい
+  text-align: center;
+
+  //header（z-index:100）よりも下におきたいから念のため10にする。ただ、背景はなにもしなくてももともとレイヤーは下にある。ただ、z-indexで引き上げると要素ごと上にあがるので、背景も含めてレイヤーが上になる
+  z-index: 10;
+
+  h1 {
+    color: #fff;
+    font-size: 31px;
+    // 文字間隔
+    letter-spacing: 0.03em;
+    //ちょっと文字が上に上がってバランスよくなる
+    margin-top: 0;
+  }
+
+  p {
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.5; //通常1.8
+    font-weight: bold;
+    letter-spacing: 0.01em;
+    // 通常の場合、margin-bottomとmargin-topがお互い相殺しあう。pにmarginがあってもh1の方が大きいからくってしまうので、いらないっちゃいらない。
+    // ただ、flexがかかっていると、margin同士は合算される！今回はh1のmarginだけにする
+    //flexだとmargin-top:autoも使える　余白が空いてh1が上、pが下に移動する
+    margin-top: 0;
+  }
+}
+
+//768以上
+@include mq {
+  .hero {
+    margin-top: 0; //メインビジュアルの-70を0にして元の位置に戻す
+  }
+}
+
+@include mq(lg) {
+
+}
