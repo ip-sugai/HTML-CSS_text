@@ -1,0 +1,13 @@
+{
+  "livePreview.defaultPreviewPath": "/HTML-CSS_text/lesson6/index.html",
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "~/../css",
+      "savePathReplacementPairs": null
+    }
+  ],
+  "liveSassCompile.settings.generateMap": true,
+  "liveSassCompile.settings.showAnnouncements": null
+}
