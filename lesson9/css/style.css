@@ -192,6 +192,9 @@ footer {
   margin: 70px 0 10px;
   text-align: center;
 }
+footer small {
+  color: purple;
+}
 
 .hero {
   background: url(../img/photo-hero.jpg) no-repeat center center;
