@@ -25,12 +25,13 @@ h4 {
   font-size: 20px;
   text-align: center;
   margin-bottom: 0.5em;
+  text-transform: uppercase; //大文字
 }
 
 // リンクにtransition ＝マウスオーバーでふわっとさせる
 // 0.3秒かけて、ちょっと（.8）薄くなる
 a {
-  color: #75af57;
+  color: var(--primary-color);
   text-decoration: none;
   transition: opacity .3s;
 

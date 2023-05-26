@@ -23,6 +23,7 @@
   text-align: center;
 
   //header（z-index:100）よりも下におきたいから念のため10にする。ただ、背景はなにもしなくてももともとレイヤーは下にある。ただ、z-indexで引き上げると要素ごと上にあがるので、背景も含めてレイヤーが上になる
+  position: relative;
   z-index: 10;
 
   h1 {
@@ -50,10 +51,145 @@
 //768以上
 @include mq {
   .hero {
-    margin-top: 0; //メインビジュアルの-70を0にして元の位置に戻す
+    margin-top: 0; //メインビジュアルの-70を0にしてheaderと分離させる＝元の位置に戻す
   }
 }
 
 @include mq(lg) {
+  .hero {
+    height: 660px; //少し大きくする
 
+    h1 {
+      font-size: 60px;
+      letter-spacing: 0.05em; //0.03から変更
+      margin-bottom: 0.25em;
+    }
+
+    p {
+      font-size: 24px;
+      letter-spacing: 0.04em; //あげる
+    }
+  }
+}
+
+//特長部分のスタイリング
+.top-feature {
+  text-align: center;
+
+  //接頭辞がtop-featureになっているので、そこに文字をくっつけてもいい
+  //top-featureの子として指定してもいいが、top-feature_boxが特徴的な名前なのでとくに親子で指定しなくてもいい
+  //margin-topはないのだが、h2のmarginがつきぬけているのでそれで余白を取っている（背景色がないからなせるワザ）
+  &_box {
+    padding: 0 30px 20px;
+  }
+
+  h2 {
+    font-size: 28px; //24pxから若干大きめに
+    margin-bottom: 0.5em;
+  }
+
+  p {
+    text-align: left; //長文は左寄せに
+  }
+
+  a {
+    //border-bottomで下線を作っている　text-decorationもあるが太さを制御できないので。
+    padding-bottom: 0.2em;
+    border-bottom: 2px solid var(--primary-color);
+    font-size: 18px;
+  }
+}
+
+@include mq {
+  .top-feature {
+    display: flex;
+    align-items: center;
+    justify-content: center; //主軸の子要素
+    text-align: left; //ta:l
+    background-color: #f3f2e8;
+    margin-top: -50px; //mvは浮いているのでその下に潜り込ませている
+    padding-top: 100px; //go campの文字がmvと重ならないように
+    padding-bottom: 50px; //下の余白
+
+
+    &_box {
+      background-color: #fff;
+      max-width: 600px;
+      //右側がちょっとひろい。画像とかぶらせるため
+      padding: 0 60px 30px 40px;
+    }
+
+    //画面をちぢめると画像は小さくならず、pの方が小さくなってしまう。画像のほうにmax-widthをつけ、さらに画像の48%分の割合だけにする
+    img {
+      margin-top: 50px;
+      margin-left: -30px; //pと重ねる
+      max-width: 48vw;
+    }
+
+    //
+    &:last-of-type {
+      flex-direction: row-reverse; //逆向きになる
+      padding-top: 50px; //よくわからないが余白
+      padding-bottom: 80px; //余白
+    }
+
+    &:last-of-type &_box {
+      padding-right: 40px; //あけてもしょうがないので戻す
+    }
+
+    &:last-of-type img {
+      margin-right: -30px;
+      margin-left: 0; //-30が残っているので戻す
+    }
+  }
+}
+
+//news
+.top-list {
+  display: flex;
+  flex-wrap: wrap; //折り返させて縦並びにする方法 flex-direction:カラムでもよい
+  margin: 0 -10px; //15pxあいていたのを-10pxするので余白5pxに広がる
+
+  // flexの中の要素はコンテンツによって大きさが変わるので、それをあえて100%にしてひろげている
+  li {
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 30px;
+  }
+
+  li a {
+    display: flex;
+    align-items: center; //画像と文字中央寄せ
+  }
+
+  li img {
+    // flex-basis: 90px; 伸びはしないが縮む...がきかない
+    max-width: 90px;
+
+  }
+
+  li &_info {
+    margin-left: 20px;
+  }
+
+  li time {
+    font-size: 14px;
+    color: #333;
+  }
+
+  li &_title {
+    margin-top: 0.25em;
+  }
+}
+
+@include mq {
+  .top-list {
+    li {
+      width: 50%;
+    }
+
+    li img {
+      max-width: 120px; //100%でも
+    }
+  }
 }
