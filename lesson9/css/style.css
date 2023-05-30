@@ -384,4 +384,40 @@ li .top-list_title {
   .news-article time {
     font-size: 14px;
   }
+}
+.faq-section {
+  max-width: 800px;
+}
+
+.faq-content {
+  margin-bottom: 60px;
+}
+.faq-content h2, .faq-content p {
+  margin-top: 1.2em;
+  display: flex;
+}
+.faq-content h2::before, .faq-content p::before {
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 1;
+  margin-top: -0.16em;
+  margin-right: 15px;
+  min-width: 100px;
+}
+.faq-content h2::before {
+  content: "Q";
+}
+.faq-content p::before {
+  content: "A";
+  color: #4eb0b5;
+}
+
+@media screen and (min-width: 768px) {
+  .faq-content h2, .faq-content p {
+    margin-top: 2em;
+  }
+  .faq-content h2::before, .faq-content p::before {
+    margin-top: -0.2em;
+    font-size: 55px;
+  }
 }/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,50 @@
+@use '../mixins' as *;
+
+.faq-section {
+  max-width: 800px;
+}
+
+.faq-content {
+  margin-bottom: 60px;
+
+  h2,p {
+    margin-top: 1.2em;
+    display: flex;
+
+    &::before {
+      font-size: 40px;
+      font-weight: bold;
+      //高さの調整
+      line-height: 1;
+      //少し上にあがる
+      margin-top: -0.16em;
+      margin-right: 15px;
+      //flexの影響を受けているQAの右端をそろえる
+      min-width: 100px;
+    }
+  }
+
+  h2::before {
+    content: 'Q';
+  }
+
+  p::before {
+    content: 'A';
+    color: #4eb0b5;
+  }
+}
+
+
+@include mq {
+  .faq-content {
+    h2,p {
+      // 1.2emを広げる
+      margin-top: 2em;
+
+      &::before {
+        margin-top: -0.2em;
+        font-size: 55px;
+      }
+    }
+  }
+}
