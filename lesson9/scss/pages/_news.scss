@@ -1,0 +1,73 @@
+@use '../mixins' as *;
+
+// .news-articleが接頭辞になっている
+.news-article {
+  margin-top: 20px;
+  max-width: 800px;
+  // margin 0 autoがきいてる
+
+  .news-eyecatch {
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 22px;
+    line-height: 1.4;
+    margin-bottom: 0.5em;
+  }
+
+  time {
+    font-size: 12px;
+  }
+
+  // ブログ書く人はsectionなぞ作らないので、セクションごとの余白はh3とかh4で見出しの前に余白を作っておくしかない。emを使えばh3,h4のフォントサイズを見るので、相対的に空く距離が変わる
+  h3,
+  h4 {
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+  }
+
+  // 本当はremとかemとかでつくるのがいいけど。基準のフォントサイズが変わったときに一緒に変わる。絶対値にすると変わらない
+  h3 {
+    font-size: 19px;
+  }
+
+  h4 {
+    font-size: 17px;
+  }
+
+  figure {
+    text-align: center;
+    margin: 0; //ユーザー設定の余白をなくしてぴしっと表示させる
+  }
+
+  figcaption {
+    font-size: 14px;
+  }
+
+  blockquote {
+    border-left: 5px solid #dcd6cb;
+    margin-left: 0;
+    padding-left: .8em;
+  }
+
+  ul,
+  ol {
+    padding-left: 1.5em;
+    list-style: disc;
+  }
+}
+
+
+//768以上
+@include mq {
+  .news-article {
+    h2 {
+      font-size: 24px;
+    }
+
+    time {
+      font-size: 14px;
+    }
+  }
+}

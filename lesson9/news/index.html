@@ -1,13 +1,118 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="css/style.css">
+
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- ノーマライズCSS　今回はCDNで持ってくる normalize.min.cssは圧縮されているファイル(特にいじらないから圧縮版でOK)-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- ファビコン -->
+  <!-- <link rel="icon" href="./img/favicon.ico"> -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
 </head>
+
 <body>
-  
+  <header>
+    <!-- ./はindex.htmlという意味　/だけだと教科書フォルダになってしまう -->
+    <!-- ロゴ画像のmax-widthは240になる　もともとは95mmあったが -->
+    <a href="../" class="header-logo">
+      <img src="../img/logo.svg" alt="Go! CAMP" width="240">
+    </a>
+    <!-- 三本線のボタン　typeは初期値submitなのでbuttonにする -->
+    <button class="header-button" type="button">
+      <span class="icon"></span>
+    </button>
+    <nav class="header-gnav">
+      <ul>
+        <li><a href="../">トップページ</a></li> <!-- ./index.htmlの省略 -->
+        <li><a href="#">Go! CAMPについて</a></li>
+        <li><a href="./">NEWS</a></li> <!-- 相対パスはページによって変わるので、headerを共通化するなら絶対パスがいい -->
+        <li><a href="../faq/index.html">よくある質問</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1 class="heading-title"></h1>
+  <!-- 記事一覧のアイキャッチ画像　記事のタイトルの下にも入ってくる -->
+  <article class="news-article">
+    <div class="news-eyecatch">
+      <img src="../img/photo-news01.jpg" alt="">
+    </div>
+    <h2>クリスマスイベントを開催しました</h2>
+    <!-- 作者名と一緒に入っていることが多い -->
+    <!-- datetime属性を付けることが多い。こっちが機械側が読むもの -->
+    <time datetime="2019-12-26">2019年12月26日</time>
+    <p>クリスマスイベントを開催いたしました。天候に恵まれ、多くの方にご来場いただき大盛況となりました。皆様に楽しんでいただける良い機会となりましたので、イベント開催の様子をご報告いたします。</p>
+    <!-- 記事の途中で入ってくる見出し -->
+    <!-- strongが太字、emがイタリック -->
+    <h3>クリスマスもキャンプスタイルで。</h3>
+    <p>キャンプといえば、屋外！　今回のイベントは屋内での開催となりましたが、会場の雰囲気は屋外クリスマスの演出で大好評でした。イベントのメイン、<a
+        href="#">クリスマスプレゼント抽選会</a>も大盛況となり３名の方に最新テントが当たりました。</p>
+    <p>
+      会場にスクリーンで広大な大地を映像で流し、BGMは川のせせらぎ。その名もずばり<strong>クリスマスキャンプ</strong>。最新映像で世界各地のキャンピングを疑似体験していだたきながらの立食パーティー。キャンプ初級者から上級者まで多くの方にご来場いただきました。
+    </p>
+    <p>
+      ご来場アンケート結果では、人気スポットやオススメスポット、人気商品などがランキング形式で発表されました。キャンプの新たな魅力を発掘できるイベントとなりました。<small>※2019年12月現在のデータ</small><br>ご協力いただきました皆様、誠にありがとうございました。
+    </p>
+    <h4>アンケート内容</h4>
+    <ul>
+      <li>人気都道府県</li>
+      <li>人気シーズン</li>
+      <li>お役立ち商品</li>
+    </ul>
+    <h4>人気の都道府県のアンケート結果</h4>
+    <ol>
+      <li>A県</li>
+      <li>B県</li>
+      <li>C県</li>
+    </ol>
+
+
+    <!-- 独立可能な表や画像、ソースコード。別ページで表示されるニュースの画像とか。文章と切り離せるならfigureでいい -->
+    <!-- 全体でmax-width100%にしているので、６００pxで打ち止め -->
+    <figure>
+      <img src="../img/photo-img02.jpg" alt="" width="600">
+      <figcaption>イベント開催の様子</figcaption>
+    </figure>
+
+    <h4>クリスマスプレゼント抽選会</h4>
+    <p>キャンプ時のお役立ち小物からテントまで、全て最新グッズが当たる、クリスマスプレゼント抽選会。おかげさまで大盛況となりました！</p>
+    <!-- 引用・転載セクション 引用文としてQタグもある-->
+    <!-- 海外だと疑似要素で頭にクオーテーションついていることが多い -->
+    <blockquote>次回開催予告：2020年1月3日〜5日の３日間、お正月イベントを開催いたします。ぜひ、ふるってご参加くださいませ。</blockquote>
+  </article>
+
+  <footer>
+    <small>&copy; MdN Corporation.</small>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+    integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- こっちは自分で作成するファイル script srcを使う ./は現在の位置　カレントディレクトリ-->
+  <script src="../js/script.js"></script>
 </body>
+
 </html>
